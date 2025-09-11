@@ -142,7 +142,7 @@ export const PoliceComplaints = () => {
   const LoadingSkeleton = () => (
     <div className="space-y-4">
       {[...Array(5)].map((_, index) => (
-        <Card key={index} className="card-elegant">
+        <Card key={index} className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm">
           <CardContent className="p-6">
             <div className="space-y-4">
               <div className="flex justify-between items-start">
@@ -185,7 +185,7 @@ export const PoliceComplaints = () => {
 
           {/* Stats Cards */}
           <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-6">
-            <Card className="card-elegant">
+            <Card className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm">
               <CardContent className="p-4">
                 <div className="flex items-center gap-3">
                   <div className="p-2 rounded-lg bg-blue-100">
@@ -199,7 +199,7 @@ export const PoliceComplaints = () => {
               </CardContent>
             </Card>
             
-            <Card className="card-elegant">
+            <Card className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm">
               <CardContent className="p-4">
                 <div className="flex items-center gap-3">
                   <div className="p-2 rounded-lg bg-yellow-100">
@@ -213,7 +213,7 @@ export const PoliceComplaints = () => {
               </CardContent>
             </Card>
 
-            <Card className="card-elegant">
+            <Card className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm">
               <CardContent className="p-4">
                 <div className="flex items-center gap-3">
                   <div className="p-2 rounded-lg bg-purple-100">
@@ -227,7 +227,7 @@ export const PoliceComplaints = () => {
               </CardContent>
             </Card>
 
-            <Card className="card-elegant">
+            <Card className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm">
               <CardContent className="p-4">
                 <div className="flex items-center gap-3">
                   <div className="p-2 rounded-lg bg-green-100">
@@ -241,7 +241,7 @@ export const PoliceComplaints = () => {
               </CardContent>
             </Card>
 
-            <Card className="card-elegant">
+            <Card className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm">
               <CardContent className="p-4">
                 <div className="flex items-center gap-3">
                   <div className="p-2 rounded-lg bg-gray-100">
@@ -296,7 +296,7 @@ export const PoliceComplaints = () => {
           {loading ? (
             <LoadingSkeleton />
           ) : filteredComplaints.length === 0 ? (
-            <Card className="card-elegant">
+            <Card className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm">
               <CardContent className="p-8 text-center">
                 <FileText className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
                 <h3 className="text-lg font-semibold mb-2">No Complaints Found</h3>
@@ -316,7 +316,7 @@ export const PoliceComplaints = () => {
           ) : (
             <div className="space-y-4">
               {filteredComplaints.map((complaint) => (
-                <Card key={complaint._id} className="card-elegant hover:shadow-md transition-shadow">
+                <Card key={complaint._id} className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm hover:shadow-md transition-shadow">
                   <CardContent className="p-6">
                     <div className="space-y-4">
                       {/* Header */}

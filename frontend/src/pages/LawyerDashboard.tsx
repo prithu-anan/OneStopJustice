@@ -192,7 +192,7 @@ const LawyerDashboard: React.FC = () => {
     <div className="space-y-6">
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
         {[...Array(4)].map((_, index) => (
-          <Card key={index} className="card-elegant">
+          <Card key={index} className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm">
             <CardContent className="p-6">
               <div className="space-y-2">
                 <Skeleton className="h-8 w-8 rounded-lg" />
@@ -205,7 +205,7 @@ const LawyerDashboard: React.FC = () => {
       </div>
       
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <Card className="card-elegant">
+        <Card className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm">
           <CardHeader>
             <Skeleton className="h-6 w-32" />
           </CardHeader>
@@ -225,7 +225,7 @@ const LawyerDashboard: React.FC = () => {
           </CardContent>
         </Card>
         
-        <Card className="card-elegant">
+        <Card className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm">
           <CardHeader>
             <Skeleton className="h-6 w-32" />
           </CardHeader>
@@ -291,7 +291,7 @@ const LawyerDashboard: React.FC = () => {
 
           {/* Stats Cards */}
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
-            <Card className="card-elegant">
+            <Card className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm">
               <CardContent className="p-6">
                 <div className="flex items-center gap-4">
                   <div className="p-3 rounded-lg bg-blue-100">
@@ -305,7 +305,7 @@ const LawyerDashboard: React.FC = () => {
               </CardContent>
             </Card>
 
-            <Card className="card-elegant">
+            <Card className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm">
               <CardContent className="p-6">
                 <div className="flex items-center gap-4">
                   <div className="p-3 rounded-lg bg-purple-100">
@@ -319,7 +319,7 @@ const LawyerDashboard: React.FC = () => {
               </CardContent>
             </Card>
 
-            <Card className="card-elegant">
+            <Card className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm">
               <CardContent className="p-6">
                 <div className="flex items-center gap-4">
                   <div className="p-3 rounded-lg bg-orange-100">
@@ -333,7 +333,7 @@ const LawyerDashboard: React.FC = () => {
               </CardContent>
             </Card>
 
-            <Card className="card-elegant">
+            <Card className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm">
               <CardContent className="p-6">
                 <div className="flex items-center gap-4">
                   <div className="p-3 rounded-lg bg-green-100">
@@ -351,7 +351,7 @@ const LawyerDashboard: React.FC = () => {
           {/* Main Content Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
             {/* Recent Activity */}
-            <Card className="card-elegant">
+            <Card className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <Activity className="h-5 w-5" />
@@ -394,7 +394,7 @@ const LawyerDashboard: React.FC = () => {
             </Card>
 
             {/* Quick Actions */}
-            <Card className="card-elegant">
+            <Card className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm">
               <CardHeader>
                 <CardTitle>Quick Actions</CardTitle>
                 <CardDescription>
@@ -403,12 +403,12 @@ const LawyerDashboard: React.FC = () => {
               </CardHeader>
               <CardContent>
                 <div className="grid grid-cols-1 gap-3">
-                  <Button asChild className="justify-start h-auto p-4">
+                  <Button asChild className="justify-start h-auto p-4 bg-gradient-to-r from-primary to-primary-hover hover:from-primary-hover hover:to-secondary text-white shadow-lg hover:shadow-xl transition-all duration-300">
                     <Link to="/lawyer/requests">
                       <Users className="h-5 w-5 mr-3" />
                       <div className="text-left">
                         <div className="font-medium">Client Requests</div>
-                        <div className="text-sm opacity-70">Manage representation requests</div>
+                        <div className="text-sm opacity-90">Manage representation requests</div>
                       </div>
                     </Link>
                   </Button>
@@ -449,7 +449,7 @@ const LawyerDashboard: React.FC = () => {
 
           {/* Status Overview */}
           {(stats.requests > 0 || stats.cases > 0) && (
-            <Card className="card-elegant">
+            <Card className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm">
               <CardHeader>
                 <CardTitle>Status Overview</CardTitle>
                 <CardDescription>

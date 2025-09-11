@@ -97,37 +97,37 @@ const BlockchainDashboard: React.FC = () => {
   const getStatusColor = (status: string) => {
     switch (status) {
       case 'CONNECTED':
-        return 'bg-green-500';
+        return 'bg-success';
       case 'DISCONNECTED':
-        return 'bg-red-500';
+        return 'bg-danger';
       default:
-        return 'bg-yellow-500';
+        return 'bg-warning';
     }
   };
 
   const getStatusIcon = (status: string) => {
     switch (status) {
       case 'CONNECTED':
-        return <CheckCircle className="h-5 w-5 text-green-500" />;
+        return <CheckCircle className="h-5 w-5 text-success" />;
       case 'DISCONNECTED':
-        return <XCircle className="h-5 w-5 text-red-500" />;
+        return <XCircle className="h-5 w-5 text-danger" />;
       default:
-        return <Clock className="h-5 w-5 text-yellow-500" />;
+        return <Clock className="h-5 w-5 text-warning" />;
     }
   };
 
   const getTransactionTypeColor = (type: string) => {
     switch (type) {
       case 'CASE_CREATED':
-        return 'bg-blue-100 text-blue-800';
+        return 'bg-primary/10 text-primary border border-primary/20';
       case 'EVIDENCE_SUBMITTED':
-        return 'bg-green-100 text-green-800';
+        return 'bg-success/10 text-success border border-success/20';
       case 'FIR_REGISTERED':
-        return 'bg-purple-100 text-purple-800';
+        return 'bg-tertiary/10 text-tertiary border border-tertiary/20';
       case 'CASE_UPDATED':
-        return 'bg-orange-100 text-orange-800';
+        return 'bg-warning/10 text-warning border border-warning/20';
       default:
-        return 'bg-gray-100 text-gray-800';
+        return 'bg-muted/10 text-muted-foreground border border-muted/20';
     }
   };
 
@@ -178,7 +178,7 @@ const BlockchainDashboard: React.FC = () => {
 
       {/* Status Cards */}
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-        <Card>
+        <Card className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Network Status</CardTitle>
             {status && getStatusIcon(status.status)}
@@ -193,7 +193,7 @@ const BlockchainDashboard: React.FC = () => {
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Current Block</CardTitle>
             <Database className="h-4 w-4 text-muted-foreground" />
@@ -208,7 +208,7 @@ const BlockchainDashboard: React.FC = () => {
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Gas Price</CardTitle>
             <Activity className="h-4 w-4 text-muted-foreground" />
@@ -223,7 +223,7 @@ const BlockchainDashboard: React.FC = () => {
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Test Mode</CardTitle>
             <Shield className="h-4 w-4 text-muted-foreground" />
@@ -241,7 +241,7 @@ const BlockchainDashboard: React.FC = () => {
 
       {/* Connection Status */}
       {status && (
-        <Card>
+        <Card className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Network className="h-5 w-5" />
@@ -285,7 +285,7 @@ const BlockchainDashboard: React.FC = () => {
       )}
 
       {/* Recent Transactions */}
-      <Card>
+      <Card className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm">
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Hash className="h-5 w-5" />
@@ -347,7 +347,7 @@ const BlockchainDashboard: React.FC = () => {
       </Card>
 
       {/* System Health */}
-      <Card>
+      <Card className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm">
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Shield className="h-5 w-5" />

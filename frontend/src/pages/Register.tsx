@@ -204,7 +204,7 @@ export const Register = () => {
             onBack={handleOTPBack}
           />
         ) : (
-          <Card className="w-full max-w-2xl card-elegant">
+          <Card className="w-full max-w-2xl bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm">
           <CardHeader className="text-center space-y-4">
             <div className="mx-auto w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
               <Icon className="h-6 w-6 text-primary" />
@@ -480,7 +480,7 @@ export const Register = () => {
 
               <Button 
                 type="submit" 
-                className="w-full btn-hero" 
+                className="w-full bg-gradient-to-r from-primary to-primary-hover hover:from-primary-hover hover:to-secondary text-white shadow-lg hover:shadow-xl transition-all duration-300 font-semibold" 
                 disabled={isLoading}
               >
                 {isLoading ? (

@@ -136,17 +136,17 @@ export const ComplaintDetail = () => {
   const getStatusColor = (status: string) => {
     switch (status) {
       case 'PENDING':
-        return 'bg-yellow-100 text-yellow-800 border-yellow-200';
+        return 'bg-warning/10 text-warning border-warning/20';
       case 'UNDER_INVESTIGATION':
-        return 'bg-blue-100 text-blue-800 border-blue-200';
+        return 'bg-primary/10 text-primary border-primary/20';
       case 'FIR_REGISTERED':
-        return 'bg-purple-100 text-purple-800 border-purple-200';
+        return 'bg-tertiary/10 text-tertiary border-tertiary/20';
       case 'CASE_FILED':
-        return 'bg-orange-100 text-orange-800 border-orange-200';
+        return 'bg-warning/10 text-warning border-warning/20';
       case 'CLOSED':
-        return 'bg-green-100 text-green-800 border-green-200';
+        return 'bg-success/10 text-success border-success/20';
       default:
-        return 'bg-gray-100 text-gray-800 border-gray-200';
+        return 'bg-muted/10 text-muted-foreground border-muted/20';
     }
   };
 
@@ -365,15 +365,15 @@ export const ComplaintDetail = () => {
                     {complaint.attachments.map((attachment, index) => (
                       <div
                         key={index}
-                        className="flex items-center justify-between p-3 border rounded-lg hover:bg-gray-50"
+                        className="flex items-center justify-between p-3 border rounded-lg hover:bg-muted/50"
                       >
                         <div className="flex items-center gap-3">
-                          <FileText className="h-5 w-5 text-gray-500" />
+                          <FileText className="h-5 w-5 text-muted-foreground" />
                           <div>
-                            <p className="font-medium text-gray-900">
+                            <p className="font-medium text-foreground">
                               {attachment.fileName}
                             </p>
-                            <p className="text-sm text-gray-500">
+                            <p className="text-sm text-muted-foreground">
                               {formatFileSize(attachment.fileSize)}
                             </p>
                           </div>

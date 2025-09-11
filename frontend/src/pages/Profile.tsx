@@ -340,7 +340,7 @@ export const Profile = () => {
             {/* Main Profile Information */}
             <div className="lg:col-span-2 space-y-6">
               {/* Personal Information */}
-              <Card className="card-elegant">
+              <Card className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm">
                 <CardHeader>
                   <div className="flex items-center justify-between">
                     <CardTitle className="flex items-center gap-2">
@@ -465,7 +465,7 @@ export const Profile = () => {
               </Card>
 
               {/* Government Information */}
-              <Card className="card-elegant">
+              <Card className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
                     <CreditCard className="h-5 w-5" />
@@ -609,7 +609,7 @@ export const Profile = () => {
             {/* Sidebar */}
             <div className="space-y-6">
               {/* Account Status */}
-              <Card className="card-elegant">
+              <Card className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
                     <Shield className="h-5 w-5" />
@@ -633,7 +633,7 @@ export const Profile = () => {
                   
                   <div className="flex items-center justify-between">
                     <span className="text-sm">Verification</span>
-                    <Badge className="bg-blue-100 text-blue-800 border-blue-200">
+                    <Badge className="bg-primary/10 text-primary border-primary/20">
                       Verified
                     </Badge>
                   </div>
@@ -653,7 +653,7 @@ export const Profile = () => {
               </Card>
 
               {/* Profile Completion */}
-              <Card className="card-elegant">
+              <Card className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm">
                 <CardHeader>
                   <CardTitle>Profile Completion</CardTitle>
                   <CardDescription>
@@ -698,7 +698,7 @@ export const Profile = () => {
               </Card>
 
               {/* Quick Actions */}
-              <Card className="card-elegant">
+              <Card className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm">
                 <CardHeader>
                   <CardTitle>Quick Actions</CardTitle>
                 </CardHeader>

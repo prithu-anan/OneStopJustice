@@ -48,6 +48,12 @@ export const useWebSocket = (): UseWebSocketReturn => {
   // Initialize WebSocket connection
   const initializeSocket = useCallback(() => {
     if (!user || !token) return;
+    const isSupportedRole = user.role === 'CITIZEN' || user.role === 'POLICE' || user.role === 'JUDGE' || user.role === 'LAWYER';
+    // Suppress connection for unsupported roles (e.g., authority/grievance admin)
+    if (!isSupportedRole) {
+      setIsConnected(false);
+      return;
+    }
 
     // Disconnect existing socket if any
     if (socketRef.current) {
@@ -80,13 +86,14 @@ export const useWebSocket = (): UseWebSocketReturn => {
     socket.on('connect_error', (error) => {
       console.error('WebSocket connection error:', error);
       setIsConnected(false);
-      
-      // Show error toast
-      toast({
-        title: "Connection Error",
-        description: "Failed to connect to notification service. Some features may not work.",
-        variant: "destructive"
-      });
+      // For supported roles, show error toast. Suppress for others.
+      if (isSupportedRole) {
+        toast({
+          title: "Connection Error",
+          description: "Failed to connect to notification service. Some features may not work.",
+          variant: "destructive"
+        });
+      }
     });
 
     // Notification events
@@ -200,6 +207,8 @@ export const useWebSocket = (): UseWebSocketReturn => {
   // Reconnection logic
   useEffect(() => {
     if (!isConnected && user && token) {
+      const isSupportedRole = user.role === 'CITIZEN' || user.role === 'POLICE' || user.role === 'JUDGE' || user.role === 'LAWYER';
+      if (!isSupportedRole) return; // suppress reconnection attempts for unsupported roles
       const reconnectTimer = setTimeout(() => {
         console.log('🔄 Attempting to reconnect...');
         initializeSocket();

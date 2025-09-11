@@ -19,19 +19,19 @@ All colors MUST be HSL.
     --popover: 0 0% 100%;
     --popover-foreground: 215 25% 15%;
 
-    /* Primary - Justice gold/amber */
-    --primary: 45 90% 55%;
-    --primary-foreground: 215 25% 15%;
-    --primary-hover: 45 90% 50%;
-    --primary-glow: 45 100% 70%;
+    /* Primary - Dark Green #025043 */
+    --primary: 170 95% 16%;
+    --primary-foreground: 0 0% 100%;
+    --primary-hover: 170 95% 12%;
+    --primary-glow: 170 80% 35%;
 
-    /* Secondary - Legal sage green */
-    --secondary: 150 25% 45%;
+    /* Secondary - Darker green */
+    --secondary: 170 85% 12%;
     --secondary-foreground: 0 0% 100%;
-    --secondary-hover: 150 30% 40%;
+    --secondary-hover: 170 85% 8%;
 
-    /* Tertiary - Deep professional blue */
-    --tertiary: 215 35% 25%;
+    /* Tertiary - Lighter green */
+    --tertiary: 170 60% 25%;
     --tertiary-foreground: 0 0% 100%;
 
     /* Status colors */
@@ -45,7 +45,7 @@ All colors MUST be HSL.
     --muted: 210 40% 96%;
     --muted-foreground: 215 16% 47%;
 
-    --accent: 215 35% 25%;
+    --accent: 170 85% 12%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84% 60%;
@@ -53,11 +53,11 @@ All colors MUST be HSL.
 
     --border: 214 32% 91%;
     --input: 214 32% 91%;
-    --ring: 45 90% 55%;
+    --ring: 170 95% 16%;
 
     /* Gradients */
     --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
-    --gradient-hero: linear-gradient(135deg, hsl(var(--secondary)), hsl(var(--tertiary)));
+    --gradient-hero: linear-gradient(135deg, hsl(170 80% 35%), hsl(170 95% 16%));
     --gradient-card: linear-gradient(145deg, hsl(0 0% 100%), hsl(210 20% 98%));
 
     /* Shadows */
@@ -103,16 +103,16 @@ All colors MUST be HSL.
     --popover: 215 25% 12%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 45 90% 55%;
-    --primary-foreground: 215 25% 15%;
-    --primary-hover: 45 90% 60%;
-    --primary-glow: 45 100% 70%;
+    --primary: 170 95% 20%;
+    --primary-foreground: 0 0% 100%;
+    --primary-hover: 170 95% 25%;
+    --primary-glow: 170 80% 40%;
 
-    --secondary: 150 25% 50%;
+    --secondary: 170 85% 15%;
     --secondary-foreground: 0 0% 100%;
-    --secondary-hover: 150 30% 45%;
+    --secondary-hover: 170 85% 20%;
 
-    --tertiary: 215 35% 35%;
+    --tertiary: 170 60% 30%;
     --tertiary-foreground: 0 0% 100%;
 
     --success: 142 76% 46%;
@@ -122,18 +122,18 @@ All colors MUST be HSL.
     --muted: 215 25% 15%;
     --muted-foreground: 215 20% 65%;
 
-    --accent: 215 35% 35%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 170 85% 15%;
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84% 70%;
     --destructive-foreground: 215 30% 8%;
 
     --border: 215 25% 18%;
     --input: 215 25% 18%;
-    --ring: 45 90% 55%;
+    --ring: 170 95% 20%;
 
     /* Dark gradients */
-    --gradient-hero: linear-gradient(135deg, hsl(var(--secondary)), hsl(var(--tertiary)));
+    --gradient-hero: linear-gradient(135deg, hsl(170 80% 40%), hsl(170 95% 20%));
     --gradient-card: linear-gradient(145deg, hsl(215 25% 12%), hsl(215 30% 8%));
 
     /* Dark shadows */
@@ -220,9 +220,237 @@ All colors MUST be HSL.
     animation: glow 2s ease-in-out infinite alternate;
   }
 
+  .animate-float-slow {
+    animation: float-slow 8s ease-in-out infinite;
+  }
+
+  .animate-float-delayed {
+    animation: float-delayed 10s ease-in-out infinite;
+  }
+
+  .animate-shimmer {
+    animation: shimmer 3s ease-in-out infinite;
+  }
+
+  .animate-pulse-slow {
+    animation: pulse-slow 4s ease-in-out infinite;
+  }
+
+  .animate-pulse-delayed {
+    animation: pulse-delayed 5s ease-in-out infinite;
+  }
+
+  .animate-shooting-star-1 {
+    animation: shooting-star-1 8s linear infinite;
+  }
+
+  .animate-shooting-star-2 {
+    animation: shooting-star-2 10s linear infinite;
+  }
+
+  .animate-shooting-star-3 {
+    animation: shooting-star-3 12s linear infinite;
+  }
+
+  .animate-shooting-star-4 {
+    animation: shooting-star-4 9s linear infinite;
+  }
+
+  .animate-shooting-star-5 {
+    animation: shooting-star-5 6s linear infinite;
+  }
+
+  .animate-shooting-star-6 {
+    animation: shooting-star-6 7s linear infinite;
+  }
+
+  .animate-shooting-star-7 {
+    animation: shooting-star-7 8s linear infinite;
+  }
+
+  .animate-shooting-star-8 {
+    animation: shooting-star-8 5s linear infinite;
+  }
+
   @keyframes float {
     0%, 100% { transform: translateY(0px); }
     50% { transform: translateY(-10px); }
+  }
+
+  @keyframes float-slow {
+    0%, 100% { transform: translateY(0px) translateX(0px) scale(1); }
+    25% { transform: translateY(-25px) translateX(15px) scale(1.1); }
+    50% { transform: translateY(-15px) translateX(-10px) scale(0.9); }
+    75% { transform: translateY(-30px) translateX(12px) scale(1.05); }
+  }
+
+  @keyframes float-delayed {
+    0%, 100% { transform: translateY(0px) translateX(0px) scale(1); }
+    33% { transform: translateY(-20px) translateX(-15px) scale(1.2); }
+    66% { transform: translateY(-10px) translateX(20px) scale(0.8); }
+  }
+
+  @keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+  }
+
+  @keyframes pulse-slow {
+    0%, 100% { 
+      transform: scale(1);
+      opacity: 0.1;
+    }
+    50% { 
+      transform: scale(1.2);
+      opacity: 0.2;
+    }
+  }
+
+  @keyframes pulse-delayed {
+    0%, 100% { 
+      transform: scale(1);
+      opacity: 0.15;
+    }
+    50% { 
+      transform: scale(1.3);
+      opacity: 0.25;
+    }
+  }
+
+  @keyframes shooting-star-1 {
+    0% { 
+      transform: translateY(-20px) translateX(0px) rotate(20deg);
+      opacity: 0;
+    }
+    5% { 
+      opacity: 1;
+    }
+    95% { 
+      opacity: 1;
+    }
+    100% { 
+      transform: translateY(100vh) translateX(200px) rotate(20deg);
+      opacity: 0;
+    }
+  }
+
+  @keyframes shooting-star-2 {
+    0% { 
+      transform: translateY(-20px) translateX(0px) rotate(20deg);
+      opacity: 0;
+    }
+    8% { 
+      opacity: 1;
+    }
+    92% { 
+      opacity: 1;
+    }
+    100% { 
+      transform: translateY(100vh) translateX(200px) rotate(20deg);
+      opacity: 0;
+    }
+  }
+
+  @keyframes shooting-star-3 {
+    0% { 
+      transform: translateY(-20px) translateX(0px) rotate(20deg);
+      opacity: 0;
+    }
+    10% { 
+      opacity: 1;
+    }
+    90% { 
+      opacity: 1;
+    }
+    100% { 
+      transform: translateY(100vh) translateX(200px) rotate(20deg);
+      opacity: 0;
+    }
+  }
+
+  @keyframes shooting-star-4 {
+    0% { 
+      transform: translateY(-20px) translateX(0px) rotate(20deg);
+      opacity: 0;
+    }
+    6% { 
+      opacity: 1;
+    }
+    94% { 
+      opacity: 1;
+    }
+    100% { 
+      transform: translateY(100vh) translateX(200px) rotate(20deg);
+      opacity: 0;
+    }
+  }
+
+  @keyframes shooting-star-5 {
+    0% { 
+      transform: translateY(-20px) translateX(0px) rotate(20deg);
+      opacity: 0;
+    }
+    7% { 
+      opacity: 1;
+    }
+    93% { 
+      opacity: 1;
+    }
+    100% { 
+      transform: translateY(100vh) translateX(200px) rotate(20deg);
+      opacity: 0;
+    }
+  }
+
+  @keyframes shooting-star-6 {
+    0% { 
+      transform: translateY(-20px) translateX(0px) rotate(20deg);
+      opacity: 0;
+    }
+    9% { 
+      opacity: 1;
+    }
+    91% { 
+      opacity: 1;
+    }
+    100% { 
+      transform: translateY(100vh) translateX(200px) rotate(20deg);
+      opacity: 0;
+    }
+  }
+
+  @keyframes shooting-star-7 {
+    0% { 
+      transform: translateY(-20px) translateX(0px) rotate(20deg);
+      opacity: 0;
+    }
+    8% { 
+      opacity: 1;
+    }
+    92% { 
+      opacity: 1;
+    }
+    100% { 
+      transform: translateY(100vh) translateX(200px) rotate(20deg);
+      opacity: 0;
+    }
+  }
+
+  @keyframes shooting-star-8 {
+    0% { 
+      transform: translateY(-20px) translateX(0px) rotate(20deg);
+      opacity: 0;
+    }
+    5% { 
+      opacity: 1;
+    }
+    95% { 
+      opacity: 1;
+    }
+    100% { 
+      transform: translateY(100vh) translateX(200px) rotate(20deg);
+      opacity: 0;
+    }
   }
 
   @keyframes glow {

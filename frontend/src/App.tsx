@@ -3,6 +3,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { ThemeProvider } from "@/contexts/ThemeContext";
 import Index from "./pages/Index";
 import { Login } from "./pages/Login";
 import { Register } from "./pages/Register";
@@ -33,15 +34,23 @@ import LawyerDashboard from "./pages/LawyerDashboard";
 import LawyerRequests from "./pages/LawyerRequests";
 import LawyerCases from "./pages/LawyerCases";
 import BlockchainTransparency from "./pages/BlockchainTransparency";
+import FileGrievance from "./pages/FileGrievance";
+import MyGrievances from "./pages/MyGrievances";
+import GrievanceDetail from "./pages/GrievanceDetail";
+import AuthorityDashboard from "./pages/AuthorityDashboard";
+import AuthorityGrievanceDetail from "./pages/AuthorityGrievanceDetail";
+import HierarchyManager from "./pages/HierarchyManager";
+import EscalationRules from "./pages/EscalationRules";
 
 const queryClient = new QueryClient();
 
 const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
+  <ThemeProvider defaultTheme="system" storageKey="onestop-justice-theme">
+    <QueryClientProvider client={queryClient}>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/login" element={<Login />} />
@@ -75,6 +84,31 @@ const App = () => (
             element={
               <ProtectedRoute>
                 <FileComplaint />
+              </ProtectedRoute>
+            } 
+          />
+          {/* Grievances (Public complaints) */}
+          <Route 
+            path="/file-grievance" 
+            element={
+              <ProtectedRoute>
+                <FileGrievance />
+              </ProtectedRoute>
+            } 
+          />
+          <Route 
+            path="/grievances" 
+            element={
+              <ProtectedRoute>
+                <MyGrievances />
+              </ProtectedRoute>
+            } 
+          />
+          <Route 
+            path="/grievances/:grievanceId" 
+            element={
+              <ProtectedRoute>
+                <GrievanceDetail />
               </ProtectedRoute>
             } 
           />
@@ -244,6 +278,41 @@ const App = () => (
           />
 
           {/* Lawyer Routes */}
+          {/* Authority Routes */}
+          <Route 
+            path="/authority/dashboard" 
+            element={
+              <ProtectedRoute allowedRoles={["AUTHORITY_HANDLER","AUTHORITY_ADMIN"]}>
+                <AuthorityDashboard />
+              </ProtectedRoute>
+            } 
+          />
+          <Route 
+            path="/authority/grievances/:grievanceId" 
+            element={
+              <ProtectedRoute allowedRoles={["AUTHORITY_HANDLER","AUTHORITY_ADMIN"]}>
+                <AuthorityGrievanceDetail />
+              </ProtectedRoute>
+            } 
+          />
+
+          {/* Grievance Admin */}
+          <Route 
+            path="/grievance-admin/hierarchy" 
+            element={
+              <ProtectedRoute requiredRole="GRIEVANCE_ADMIN">
+                <HierarchyManager />
+              </ProtectedRoute>
+            } 
+          />
+          <Route 
+            path="/grievance-admin/rules" 
+            element={
+              <ProtectedRoute requiredRole="GRIEVANCE_ADMIN">
+                <EscalationRules />
+              </ProtectedRoute>
+            } 
+          />
           <Route 
             path="/lawyer/dashboard" 
             element={
@@ -275,6 +344,7 @@ const App = () => (
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
+  </ThemeProvider>
 );
 
 export default App;

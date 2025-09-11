@@ -195,7 +195,7 @@ export const JudgeDashboard = () => {
 
         {/* Stats Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-          <Card className="card-elegant">
+          <Card className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">Pending FIRs</CardTitle>
               <FileText className="h-4 w-4 text-muted-foreground" />
@@ -210,7 +210,7 @@ export const JudgeDashboard = () => {
             </CardContent>
           </Card>
 
-          <Card className="card-elegant">
+          <Card className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">Active Cases</CardTitle>
               <Scale className="h-4 w-4 text-muted-foreground" />
@@ -225,7 +225,7 @@ export const JudgeDashboard = () => {
             </CardContent>
           </Card>
 
-          <Card className="card-elegant">
+          <Card className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">Scheduled Hearings</CardTitle>
               <Calendar className="h-4 w-4 text-muted-foreground" />
@@ -240,7 +240,7 @@ export const JudgeDashboard = () => {
             </CardContent>
           </Card>
 
-          <Card className="card-elegant">
+          <Card className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">Closed Cases</CardTitle>
               <CheckCircle className="h-4 w-4 text-muted-foreground" />
@@ -258,7 +258,7 @@ export const JudgeDashboard = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Recent FIRs */}
-          <Card className="card-elegant">
+          <Card className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm">
             <CardHeader>
               <div className="flex items-center justify-between">
                 <div>
@@ -322,7 +322,7 @@ export const JudgeDashboard = () => {
           </Card>
 
           {/* Recent Cases */}
-          <Card className="card-elegant">
+          <Card className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm">
             <CardHeader>
               <div className="flex items-center justify-between">
                 <div>
@@ -390,7 +390,7 @@ export const JudgeDashboard = () => {
         </div>
 
         {/* Quick Actions */}
-        <Card className="card-elegant mt-8">
+        <Card className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm mt-8">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <TrendingUp className="h-5 w-5" />

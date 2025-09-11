@@ -292,7 +292,7 @@ export const PoliceCaseDetail = () => {
             {/* Left Column - Details */}
             <div className="lg:col-span-2 space-y-6">
               {/* FIR Details */}
-              <Card className="card-elegant">
+              <Card className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm">
                 <CardHeader>
                   <CardTitle>FIR Information</CardTitle>
                 </CardHeader>
@@ -328,7 +328,7 @@ export const PoliceCaseDetail = () => {
               </Card>
 
               {/* Complainant Details */}
-              <Card className="card-elegant">
+              <Card className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm">
                 <CardHeader>
                   <CardTitle>Complainant Information</CardTitle>
                 </CardHeader>
@@ -360,7 +360,7 @@ export const PoliceCaseDetail = () => {
 
               {/* Evidence Files */}
               {caseDetail.evidenceFiles && caseDetail.evidenceFiles.length > 0 && (
-                <Card className="card-elegant">
+                <Card className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm">
                   <CardHeader>
                     <CardTitle>Evidence Files</CardTitle>
                   </CardHeader>
@@ -397,7 +397,7 @@ export const PoliceCaseDetail = () => {
             {/* Right Column - Case Info */}
             <div className="space-y-6">
               {/* Judge Information */}
-              <Card className="card-elegant">
+              <Card className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm">
                 <CardHeader>
                   <CardTitle>Assigned Judge</CardTitle>
                 </CardHeader>
@@ -415,7 +415,7 @@ export const PoliceCaseDetail = () => {
               </Card>
 
               {/* Investigating Officers */}
-              <Card className="card-elegant">
+              <Card className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm">
                 <CardHeader>
                   <CardTitle>Investigating Officers</CardTitle>
                 </CardHeader>
@@ -442,7 +442,7 @@ export const PoliceCaseDetail = () => {
               </Card>
 
               {/* Hearing Schedule */}
-              <Card className="card-elegant">
+              <Card className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm">
                 <CardHeader>
                   <CardTitle>Hearing Schedule</CardTitle>
                 </CardHeader>
@@ -480,7 +480,7 @@ export const PoliceCaseDetail = () => {
               </Card>
 
               {/* Case Timeline */}
-              <Card className="card-elegant">
+              <Card className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm">
                 <CardHeader>
                   <CardTitle>Case Timeline</CardTitle>
                 </CardHeader>

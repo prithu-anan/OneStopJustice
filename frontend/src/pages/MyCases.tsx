@@ -70,30 +70,30 @@ export const MyCases = () => {
   const getStatusIcon = (status: string) => {
     switch (status.toUpperCase()) {
       case 'PENDING':
-        return <Clock className="h-4 w-4 text-yellow-500" />;
+        return <Clock className="h-4 w-4 text-warning" />;
       case 'ONGOING':
-        return <AlertCircle className="h-4 w-4 text-blue-500" />;
+        return <AlertCircle className="h-4 w-4 text-primary" />;
       case 'CLOSED':
-        return <CheckCircle className="h-4 w-4 text-green-500" />;
+        return <CheckCircle className="h-4 w-4 text-success" />;
       case 'DISMISSED':
-        return <XCircle className="h-4 w-4 text-red-500" />;
+        return <XCircle className="h-4 w-4 text-destructive" />;
       default:
-        return <FileText className="h-4 w-4 text-gray-500" />;
+        return <FileText className="h-4 w-4 text-muted-foreground" />;
     }
   };
 
   const getStatusColor = (status: string) => {
     switch (status.toUpperCase()) {
       case 'PENDING':
-        return 'bg-yellow-100 text-yellow-800 border-yellow-200';
+        return 'bg-amber-100 text-amber-800 border-amber-200 dark:bg-amber-900/20 dark:text-amber-300 dark:border-amber-700';
       case 'ONGOING':
-        return 'bg-blue-100 text-blue-800 border-blue-200';
+        return 'bg-primary/10 text-primary border-primary/20 dark:bg-primary/20 dark:text-primary-foreground dark:border-primary/30';
       case 'CLOSED':
-        return 'bg-green-100 text-green-800 border-green-200';
+        return 'bg-green-100 text-green-800 border-green-200 dark:bg-green-900/20 dark:text-green-300 dark:border-green-700';
       case 'DISMISSED':
-        return 'bg-red-100 text-red-800 border-red-200';
+        return 'bg-red-100 text-red-800 border-red-200 dark:bg-red-900/20 dark:text-red-300 dark:border-red-700';
       default:
-        return 'bg-gray-100 text-gray-800 border-gray-200';
+        return 'bg-muted text-muted-foreground border-border';
     }
   };
 
@@ -130,7 +130,7 @@ export const MyCases = () => {
   const LoadingSkeleton = () => (
     <div className="space-y-4">
       {[...Array(3)].map((_, index) => (
-        <Card key={index} className="card-elegant">
+        <Card key={index} className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm">
           <CardHeader>
             <div className="flex items-start justify-between">
               <div className="space-y-2 flex-1">
@@ -182,7 +182,7 @@ export const MyCases = () => {
               </p>
             </div>
           </div>
-          <Button asChild className="bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 text-white">
+          <Button asChild className="bg-gradient-to-r from-primary to-primary-hover hover:from-primary-hover hover:to-secondary text-white shadow-lg hover:shadow-xl transition-all duration-300">
             <Link to="/file-complaint">
               <Plus className="h-4 w-4 mr-2" />
               File New Complaint
@@ -192,7 +192,7 @@ export const MyCases = () => {
 
         {/* Stats */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
-          <Card className="card-elegant">
+          <Card className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm">
             <CardContent className="p-4">
               <div className="flex items-center gap-3">
                 <div className="p-2 rounded-lg bg-blue-100">
@@ -206,7 +206,7 @@ export const MyCases = () => {
             </CardContent>
           </Card>
           
-          <Card className="card-elegant">
+          <Card className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm">
             <CardContent className="p-4">
               <div className="flex items-center gap-3">
                 <div className="p-2 rounded-lg bg-yellow-100">
@@ -222,7 +222,7 @@ export const MyCases = () => {
             </CardContent>
           </Card>
 
-          <Card className="card-elegant">
+          <Card className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm">
             <CardContent className="p-4">
               <div className="flex items-center gap-3">
                 <div className="p-2 rounded-lg bg-blue-100">
@@ -238,7 +238,7 @@ export const MyCases = () => {
             </CardContent>
           </Card>
 
-          <Card className="card-elegant">
+          <Card className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm">
             <CardContent className="p-4">
               <div className="flex items-center gap-3">
                 <div className="p-2 rounded-lg bg-green-100">
@@ -259,14 +259,14 @@ export const MyCases = () => {
         {loading ? (
           <LoadingSkeleton />
         ) : cases.length === 0 ? (
-          <Card className="card-elegant">
+          <Card className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm">
             <CardContent className="p-8 text-center">
               <Scale className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
               <h3 className="text-lg font-semibold mb-2">No Cases Found</h3>
               <p className="text-muted-foreground mb-4">
                 You don't have any cases yet. Cases are created when your complaints are converted to FIRs and then to legal cases.
               </p>
-              <Button asChild variant="outline">
+              <Button asChild variant="outline" className="border-primary/20 text-primary hover:bg-primary/10">
                 <Link to="/file-complaint">File Your First Complaint</Link>
               </Button>
             </CardContent>
@@ -277,7 +277,7 @@ export const MyCases = () => {
               const nextHearing = getNextHearingDate(caseItem.hearingDates);
               
               return (
-                <Card key={caseItem._id} className="card-elegant hover:shadow-lg transition-all duration-200">
+                <Card key={caseItem._id} className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm hover:shadow-lg transition-all duration-200">
                   <CardHeader>
                     <div className="flex items-start justify-between">
                       <div className="flex-1">
@@ -367,7 +367,7 @@ export const MyCases = () => {
                       <p className="text-sm text-muted-foreground">
                         Case created: {formatDate(caseItem.createdAt)}
                       </p>
-                      <Button asChild variant="outline" size="sm">
+                      <Button asChild variant="outline" size="sm" className="border-primary/20 text-primary hover:bg-primary/10">
                         <Link 
                           to={`/cases/${caseItem._id}`}
                           state={{ caseData: caseItem }}

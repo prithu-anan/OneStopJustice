@@ -52,27 +52,27 @@ interface Complaint {
 const statusConfig = {
   PENDING: {
     label: 'Pending',
-    color: 'bg-yellow-100 text-yellow-800 border-yellow-200',
+    color: 'bg-amber-100 text-amber-800 border-amber-200 dark:bg-amber-900/20 dark:text-amber-300 dark:border-amber-700',
     icon: Clock
   },
   UNDER_INVESTIGATION: {
     label: 'Under Investigation',
-    color: 'bg-blue-100 text-blue-800 border-blue-200',
+    color: 'bg-primary/10 text-primary border-primary/20 dark:bg-primary/20 dark:text-primary-foreground dark:border-primary/30',
     icon: AlertCircle
   },
   FIR_REGISTERED: {
     label: 'FIR Registered',
-    color: 'bg-purple-100 text-purple-800 border-purple-200',
+    color: 'bg-cyan-100 text-cyan-800 border-cyan-200 dark:bg-cyan-900/20 dark:text-cyan-300 dark:border-cyan-700',
     icon: FileText
   },
   CASE_FILED: {
     label: 'Case Filed',
-    color: 'bg-indigo-100 text-indigo-800 border-indigo-200',
+    color: 'bg-emerald-100 text-emerald-800 border-emerald-200 dark:bg-emerald-900/20 dark:text-emerald-300 dark:border-emerald-700',
     icon: BadgeIcon
   },
   CLOSED: {
     label: 'Closed',
-    color: 'bg-green-100 text-green-800 border-green-200',
+    color: 'bg-green-100 text-green-800 border-green-200 dark:bg-green-900/20 dark:text-green-300 dark:border-green-700',
     icon: CheckCircle
   }
 };
@@ -208,11 +208,11 @@ export const MyComplaints = () => {
       <Layout>
         <div className="container mx-auto px-4 py-8">
           <div className="animate-pulse space-y-4">
-            <div className="h-8 bg-gray-200 rounded w-1/4"></div>
-            <div className="h-4 bg-gray-200 rounded w-1/2"></div>
+            <div className="h-8 bg-muted rounded w-1/4"></div>
+            <div className="h-4 bg-muted rounded w-1/2"></div>
             <div className="grid gap-6">
               {[1, 2, 3].map((i) => (
-                <div key={i} className="h-48 bg-gray-200 rounded-lg"></div>
+                <div key={i} className="h-48 bg-muted rounded-lg"></div>
               ))}
             </div>
           </div>
@@ -228,12 +228,12 @@ export const MyComplaints = () => {
         <div className="mb-8">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div>
-              <h1 className="text-3xl font-bold text-slate-800">My Complaints</h1>
-              <p className="text-slate-600 mt-2">
+              <h1 className="text-3xl font-bold text-foreground">My Complaints</h1>
+              <p className="text-muted-foreground mt-2">
                 Track and manage all your filed complaints
               </p>
               {user && (
-                <p className="text-sm text-slate-500 mt-1">
+                <p className="text-sm text-muted-foreground/70 mt-1">
                   Logged in as: {user.name} ({user.nid})
                 </p>
               )}
@@ -248,7 +248,7 @@ export const MyComplaints = () => {
                 <RefreshCw className={`h-4 w-4 ${isLoading ? 'animate-spin' : ''}`} />
                 Refresh
               </Button>
-              <Button asChild className="bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 text-white">
+              <Button asChild className="bg-gradient-to-r from-primary to-primary-hover hover:from-primary-hover hover:to-secondary text-white shadow-lg hover:shadow-xl transition-all duration-300">
                 <Link to="/file-complaint">
                   <Plus className="h-4 w-4 mr-2" />
                   File New Complaint
@@ -260,63 +260,63 @@ export const MyComplaints = () => {
 
         {/* Stats Cards */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-          <Card className="border-0 shadow-lg bg-gradient-to-br from-slate-50 to-gray-100">
+          <Card className="border border-primary/20 dark:border-primary/30 shadow-lg bg-primary/5 dark:bg-primary/10 hover:shadow-xl hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-slate-600">Total Complaints</p>
-                  <p className="text-2xl font-bold text-slate-800">{complaints.length}</p>
+                  <p className="text-sm font-medium text-muted-foreground">Total Complaints</p>
+                  <p className="text-2xl font-bold text-foreground">{complaints.length}</p>
                 </div>
-                <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
-                  <FileText className="h-6 w-6 text-blue-600" />
+                <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
+                  <FileText className="h-6 w-6 text-primary" />
                 </div>
               </div>
             </CardContent>
           </Card>
 
-          <Card className="border-0 shadow-lg bg-gradient-to-br from-slate-50 to-gray-100">
+          <Card className="border border-primary/20 dark:border-primary/30 shadow-lg bg-primary/5 dark:bg-primary/10 hover:shadow-xl hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-slate-600">Under Investigation</p>
-                  <p className="text-2xl font-bold text-slate-800">
+                  <p className="text-sm font-medium text-muted-foreground">Under Investigation</p>
+                  <p className="text-2xl font-bold text-foreground">
                     {complaints.filter(c => c.status === 'UNDER_INVESTIGATION').length}
                   </p>
                 </div>
-                <div className="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center">
-                  <AlertCircle className="h-6 w-6 text-yellow-600" />
+                <div className="w-12 h-12 bg-warning/10 rounded-full flex items-center justify-center">
+                  <AlertCircle className="h-6 w-6 text-warning" />
                 </div>
               </div>
             </CardContent>
           </Card>
 
-          <Card className="border-0 shadow-lg bg-gradient-to-br from-slate-50 to-gray-100">
+          <Card className="border border-primary/20 dark:border-primary/30 shadow-lg bg-primary/5 dark:bg-primary/10 hover:shadow-xl hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-slate-600">Closed</p>
-                  <p className="text-2xl font-bold text-slate-800">
+                  <p className="text-sm font-medium text-muted-foreground">Closed</p>
+                  <p className="text-2xl font-bold text-foreground">
                     {complaints.filter(c => c.status === 'CLOSED').length}
                   </p>
                 </div>
-                <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
-                  <CheckCircle className="h-6 w-6 text-green-600" />
+                <div className="w-12 h-12 bg-success/10 rounded-full flex items-center justify-center">
+                  <CheckCircle className="h-6 w-6 text-success" />
                 </div>
               </div>
             </CardContent>
           </Card>
 
-          <Card className="border-0 shadow-lg bg-gradient-to-br from-slate-50 to-gray-100">
+          <Card className="border border-primary/20 dark:border-primary/30 shadow-lg bg-primary/5 dark:bg-primary/10 hover:shadow-xl hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-slate-600">Pending</p>
-                  <p className="text-2xl font-bold text-slate-800">
+                  <p className="text-sm font-medium text-muted-foreground">Pending</p>
+                  <p className="text-2xl font-bold text-foreground">
                     {complaints.filter(c => c.status === 'PENDING').length}
                   </p>
                 </div>
-                <div className="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center">
-                  <Clock className="h-6 w-6 text-red-600" />
+                <div className="w-12 h-12 bg-danger/10 rounded-full flex items-center justify-center">
+                  <Clock className="h-6 w-6 text-danger" />
                 </div>
               </div>
             </CardContent>
@@ -324,33 +324,40 @@ export const MyComplaints = () => {
         </div>
 
         {/* Filters */}
-        <Card className="mb-6 border-0 shadow-lg">
+        <Card className="mb-6 border border-primary/20 dark:border-primary/30 shadow-lg bg-primary/5 dark:bg-primary/10 backdrop-blur-sm">
           <CardContent className="p-6">
             <div className="flex flex-col sm:flex-row gap-4">
               <div className="flex-1">
                 <div className="relative">
-                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                   <Input
                     placeholder="Search complaints by title, description, or area..."
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    className="pl-10"
+                    className="pl-10 bg-background border-border focus:ring-primary"
                   />
                 </div>
               </div>
               <div className="sm:w-48">
-                <select
-                  value={statusFilter}
-                  onChange={(e) => setStatusFilter(e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                >
-                  <option value="ALL">All Status</option>
-                  <option value="PENDING">Pending</option>
-                  <option value="UNDER_INVESTIGATION">Under Investigation</option>
-                  <option value="FIR_REGISTERED">FIR Registered</option>
-                  <option value="CASE_FILED">Case Filed</option>
-                  <option value="CLOSED">Closed</option>
-                </select>
+                <div className="relative">
+                  <select
+                    value={statusFilter}
+                    onChange={(e) => setStatusFilter(e.target.value)}
+                    className="w-full px-3 py-2 pr-8 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary bg-background text-foreground appearance-none"
+                  >
+                    <option value="ALL">All Status</option>
+                    <option value="PENDING">Pending</option>
+                    <option value="UNDER_INVESTIGATION">Under Investigation</option>
+                    <option value="FIR_REGISTERED">FIR Registered</option>
+                    <option value="CASE_FILED">Case Filed</option>
+                    <option value="CLOSED">Closed</option>
+                  </select>
+                  <div className="absolute inset-y-0 right-2 flex items-center pointer-events-none">
+                    <svg className="w-4 h-4 text-muted-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </div>
+                </div>
               </div>
             </div>
           </CardContent>
@@ -358,20 +365,20 @@ export const MyComplaints = () => {
 
         {/* Complaints List */}
         {filteredComplaints.length === 0 ? (
-          <Card className="border-0 shadow-lg">
+          <Card className="border border-primary/20 dark:border-primary/30 shadow-lg bg-primary/5 dark:bg-primary/10 backdrop-blur-sm">
             <CardContent className="p-12 text-center">
-              <FileText className="h-16 w-16 text-gray-300 mx-auto mb-4" />
-              <h3 className="text-lg font-semibold text-gray-600 mb-2">
+              <FileText className="h-16 w-16 text-muted-foreground/50 mx-auto mb-4" />
+              <h3 className="text-lg font-semibold text-foreground mb-2">
                 {complaints.length === 0 ? 'No complaints filed yet' : 'No complaints match your search'}
               </h3>
-              <p className="text-gray-500 mb-6">
+              <p className="text-muted-foreground mb-6">
                 {complaints.length === 0 
                   ? 'Start by filing your first complaint to seek justice.'
                   : 'Try adjusting your search terms or filters.'
                 }
               </p>
               {complaints.length === 0 && (
-                <Button asChild className="bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 text-white">
+                <Button asChild className="bg-gradient-to-r from-primary to-primary-hover hover:from-primary-hover hover:to-secondary text-white shadow-lg hover:shadow-xl transition-all duration-300">
                   <Link to="/file-complaint">
                     <Plus className="h-4 w-4 mr-2" />
                     File Your First Complaint
@@ -387,22 +394,22 @@ export const MyComplaints = () => {
               const StatusIcon = statusInfo.icon;
 
               return (
-                <Card key={complaint._id} className="border-0 shadow-lg hover:shadow-xl transition-all duration-300">
+                <Card key={complaint._id} className="border border-primary/20 dark:border-primary/30 shadow-lg hover:shadow-xl hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 bg-primary/5 dark:bg-primary/10 backdrop-blur-sm">
                   <CardHeader className="pb-4">
                     <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
                       <div className="flex-1">
                         <div className="flex items-center gap-3 mb-2">
-                          <CardTitle className="text-xl text-slate-800">{complaint.title}</CardTitle>
+                          <CardTitle className="text-xl text-foreground">{complaint.title}</CardTitle>
                           <Badge className={`${statusInfo.color} border font-medium px-3 py-1`}>
                             <StatusIcon className="h-3 w-3 mr-1" />
                             {statusInfo.label}
                           </Badge>
                         </div>
-                        <CardDescription className="text-slate-600 text-base">
+                        <CardDescription className="text-muted-foreground text-base">
                           {complaint.description}
                         </CardDescription>
                       </div>
-                      <Button variant="outline" size="sm" asChild>
+                      <Button variant="outline" size="sm" asChild className="border-primary/20 text-primary hover:bg-primary/10">
                         <Link 
                           to={`/complaints/${complaint._id}`}
                           onClick={() => {
@@ -419,18 +426,18 @@ export const MyComplaints = () => {
                   
                   <CardContent className="pt-0">
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-4">
-                      <div className="flex items-center gap-2 text-sm text-slate-600">
+                      <div className="flex items-center gap-2 text-sm text-muted-foreground">
                         <Calendar className="h-4 w-4" />
                         <span>Filed: {formatDate(complaint.createdAt)}</span>
                       </div>
                       
-                      <div className="flex items-center gap-2 text-sm text-slate-600">
+                      <div className="flex items-center gap-2 text-sm text-muted-foreground">
                         <BadgeIcon className="h-4 w-4" />
                         <span>Area: {complaint.area}</span>
                       </div>
                       
                       {complaint.assignedOfficerIds.length > 0 && (
-                        <div className="flex items-center gap-2 text-sm text-slate-600">
+                        <div className="flex items-center gap-2 text-sm text-muted-foreground">
                           <User className="h-4 w-4" />
                           <span>
                             Officer: {complaint.assignedOfficerIds[0].name} ({complaint.assignedOfficerIds[0].rank})
@@ -443,7 +450,7 @@ export const MyComplaints = () => {
                       <>
                         <Separator className="my-4" />
                         <div>
-                          <h4 className="text-sm font-medium text-slate-700 mb-3">
+                          <h4 className="text-sm font-medium text-foreground mb-3">
                             Attachments ({complaint.attachments.length})
                           </h4>
                           <div className="flex flex-wrap gap-2">
@@ -453,7 +460,7 @@ export const MyComplaints = () => {
                                 variant="outline"
                                 size="sm"
                                 onClick={() => downloadAttachment(attachment)}
-                                className="text-xs"
+                                className="text-xs border-primary/20 text-primary hover:bg-primary/10"
                               >
                                 <Download className="h-3 w-3 mr-1" />
                                 {attachment.fileName}

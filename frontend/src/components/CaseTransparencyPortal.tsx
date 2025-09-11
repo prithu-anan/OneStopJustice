@@ -193,28 +193,28 @@ const CaseTransparencyPortal: React.FC = () => {
   const getStatusColor = (status: string) => {
     switch (status.toUpperCase()) {
       case 'ACTIVE':
-        return 'bg-green-100 text-green-800';
+        return 'bg-success/10 text-success border border-success/20';
       case 'CLOSED':
-        return 'bg-red-100 text-red-800';
+        return 'bg-danger/10 text-danger border border-danger/20';
       case 'PENDING':
-        return 'bg-yellow-100 text-yellow-800';
+        return 'bg-warning/10 text-warning border border-warning/20';
       default:
-        return 'bg-gray-100 text-gray-800';
+        return 'bg-muted/10 text-muted-foreground border border-muted/20';
     }
   };
 
   const getUpdateTypeColor = (type: string) => {
     switch (type.toUpperCase()) {
       case 'STATUS_CHANGE':
-        return 'bg-blue-100 text-blue-800';
+        return 'bg-primary/10 text-primary border border-primary/20';
       case 'EVIDENCE_SUBMITTED':
-        return 'bg-green-100 text-green-800';
+        return 'bg-success/10 text-success border border-success/20';
       case 'HEARING_SCHEDULED':
-        return 'bg-purple-100 text-purple-800';
+        return 'bg-tertiary/10 text-tertiary border border-tertiary/20';
       case 'JUDGMENT_PASSED':
-        return 'bg-orange-100 text-orange-800';
+        return 'bg-warning/10 text-warning border border-warning/20';
       default:
-        return 'bg-gray-100 text-gray-800';
+        return 'bg-muted/10 text-muted-foreground border border-muted/20';
     }
   };
 
@@ -230,7 +230,7 @@ const CaseTransparencyPortal: React.FC = () => {
       </div>
 
       {/* Search Section */}
-      <Card>
+      <Card className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm">
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Search className="h-5 w-5" />
@@ -287,10 +287,10 @@ const CaseTransparencyPortal: React.FC = () => {
             {caseVerification && (
               <div className="space-y-4">
                 {/* Verification Status */}
-                <Card>
+                <Card className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm">
                   <CardHeader>
                     <CardTitle className="flex items-center gap-2">
-                      <Verified className="h-5 w-5 text-green-500" />
+                      <Verified className="h-5 w-5 text-success" />
                       Verification Status
                     </CardTitle>
                   </CardHeader>
@@ -341,7 +341,7 @@ const CaseTransparencyPortal: React.FC = () => {
                 </Card>
 
                 {/* Case Metadata */}
-                <Card>
+                <Card className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm">
                   <CardHeader>
                     <CardTitle className="flex items-center gap-2">
                       <FileText className="h-5 w-5" />
@@ -385,7 +385,7 @@ const CaseTransparencyPortal: React.FC = () => {
                 </Card>
 
                 {/* Evidence */}
-                <Card>
+                <Card className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm">
                   <CardHeader>
                     <CardTitle className="flex items-center gap-2">
                       <Shield className="h-5 w-5" />
@@ -400,7 +400,7 @@ const CaseTransparencyPortal: React.FC = () => {
                         {caseVerification.evidence.map((evidence, index) => (
                           <div key={index} className="flex items-center justify-between p-3 border rounded-lg">
                             <div className="flex items-center gap-3">
-                              <Badge variant="outline" className={evidence.verified ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800'}>
+                              <Badge variant="outline" className={evidence.verified ? 'bg-success/10 text-success border-success/20' : 'bg-warning/10 text-warning border-warning/20'}>
                                 {evidence.verified ? 'VERIFIED' : 'PENDING'}
                               </Badge>
                               <div>
@@ -425,7 +425,7 @@ const CaseTransparencyPortal: React.FC = () => {
                 </Card>
 
                 {/* Documents */}
-                <Card>
+                <Card className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm">
                   <CardHeader>
                     <CardTitle className="flex items-center gap-2">
                       <FileText className="h-5 w-5" />
@@ -467,7 +467,7 @@ const CaseTransparencyPortal: React.FC = () => {
                 </Card>
 
                 {/* Case Updates */}
-                <Card>
+                <Card className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm">
                   <CardHeader>
                     <CardTitle className="flex items-center gap-2">
                       <Clock className="h-5 w-5" />
@@ -504,7 +504,7 @@ const CaseTransparencyPortal: React.FC = () => {
                 </Card>
 
                 {/* Blockchain Information */}
-                <Card>
+                <Card className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm">
                   <CardHeader>
                     <CardTitle className="flex items-center gap-2">
                       <Hash className="h-5 w-5" />
@@ -550,10 +550,10 @@ const CaseTransparencyPortal: React.FC = () => {
             {evidenceVerification && (
               <div className="space-y-4">
                 {/* Evidence Verification Status */}
-                <Card>
+                <Card className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm">
                   <CardHeader>
                     <CardTitle className="flex items-center gap-2">
-                      <Verified className="h-5 w-5 text-green-500" />
+                      <Verified className="h-5 w-5 text-success" />
                       Evidence Verification
                     </CardTitle>
                   </CardHeader>
@@ -611,7 +611,7 @@ const CaseTransparencyPortal: React.FC = () => {
                 </Card>
 
                 {/* Blockchain Information */}
-                <Card>
+                <Card className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm">
                   <CardHeader>
                     <CardTitle className="flex items-center gap-2">
                       <Hash className="h-5 w-5" />
@@ -663,7 +663,7 @@ const CaseTransparencyPortal: React.FC = () => {
       )}
 
       {/* Information Section */}
-      <Card>
+      <Card className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm">
         <CardHeader>
           <CardTitle>About This Portal</CardTitle>
         </CardHeader>

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -9,6 +9,7 @@ import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Loader2, Scale, Shield, Gavel, Users } from 'lucide-react';
 import { Layout } from '@/components/layout/Layout';
 import { useAuthStore, UserRole } from '@/store/authStore';
+import { useGrievanceStore } from '@/store/grievanceStore';
 import { useToast } from '@/hooks/use-toast';
 import api from '@/lib/api';
 import { API_CONFIG } from '@/config/api';
@@ -41,6 +42,27 @@ const roleConfig = {
     icon: Users,
     placeholder: 'Enter your Bar ID',
     field: 'bid'
+  },
+  AUTHORITY_HANDLER: {
+    title: 'Authority Handler Login',
+    description: 'Work on grievances assigned to your office',
+    icon: Shield,
+    placeholder: 'Select office',
+    field: 'authorityId'
+  },
+  AUTHORITY_ADMIN: {
+    title: 'Authority Admin Login',
+    description: 'Manage grievances and office settings',
+    icon: Shield,
+    placeholder: 'Select office',
+    field: 'managedAuthorityIds'
+  },
+  GRIEVANCE_ADMIN: {
+    title: 'Grievance Admin Login',
+    description: 'Administer hierarchy and escalation rules',
+    icon: Shield,
+    placeholder: 'Admin access',
+    field: 'none'
   }
 };
 
@@ -49,6 +71,7 @@ export const Login = () => {
   const navigate = useNavigate();
   const { login } = useAuthStore();
   const { toast } = useToast();
+  const { authorities, seedDemoData } = useGrievanceStore();
   
   const [role, setRole] = useState<UserRole>(
     (searchParams.get('role')?.toUpperCase() as UserRole) || 'CITIZEN'
@@ -57,6 +80,9 @@ export const Login = () => {
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
+  const [authorityOfficeId, setAuthorityOfficeId] = useState<string>('');
+
+  useEffect(() => { seedDemoData(); }, [seedDemoData]);
 
   const config = roleConfig[role];
   const Icon = config.icon;
@@ -67,6 +93,37 @@ export const Login = () => {
     setError('');
 
     try {
+      // Mock login flow for new roles
+      if (role === 'AUTHORITY_HANDLER' || role === 'AUTHORITY_ADMIN' || role === 'GRIEVANCE_ADMIN') {
+        const generatedId = `${role}-${Date.now()}`;
+        const userData: any = {
+          id: generatedId,
+          name: role === 'GRIEVANCE_ADMIN' ? 'Grievance Admin' : (role === 'AUTHORITY_ADMIN' ? 'Authority Admin' : 'Authority Handler'),
+          role,
+        };
+        if (role === 'AUTHORITY_HANDLER') {
+          if (!authorityOfficeId) {
+            setError('Please select an authority office');
+            setIsLoading(false);
+            return;
+          }
+          userData.authorityId = authorityOfficeId;
+        }
+        if (role === 'AUTHORITY_ADMIN') {
+          if (!authorityOfficeId) {
+            setError('Please select an authority office');
+            setIsLoading(false);
+            return;
+          }
+          userData.managedAuthorityIds = [authorityOfficeId];
+        }
+        login(userData, 'mock-token');
+        toast({ title: 'Login Successful', description: `Welcome, ${userData.name}!` });
+        if (role === 'GRIEVANCE_ADMIN') navigate('/grievance-admin/hierarchy');
+        else navigate('/authority/dashboard');
+        return;
+      }
+
       const loginData = {
         [config.field]: identifier,
         password
@@ -117,7 +174,7 @@ export const Login = () => {
   return (
     <Layout showFooter={false}>
       <div className="min-h-[calc(100vh-4rem)] flex items-center justify-center bg-gradient-to-br from-background to-muted/30 p-4">
-        <Card className="w-full max-w-md card-elegant">
+        <Card className="w-full max-w-md bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm">
           <CardHeader className="text-center space-y-4">
             <div className="mx-auto w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
               <Icon className="h-6 w-6 text-primary" />
@@ -142,37 +199,59 @@ export const Login = () => {
                     <SelectItem value="POLICE">Police Officer</SelectItem>
                     <SelectItem value="JUDGE">Judge</SelectItem>
                     <SelectItem value="LAWYER">Lawyer</SelectItem>
+                    <SelectItem value="AUTHORITY_HANDLER">Authority Handler</SelectItem>
+                    <SelectItem value="AUTHORITY_ADMIN">Authority Admin</SelectItem>
+                    <SelectItem value="GRIEVANCE_ADMIN">Grievance Admin</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
 
-              {/* Identifier Input */}
-              <div className="space-y-2">
-                <Label htmlFor="identifier">
-                  {role === 'CITIZEN' ? 'National ID' :
-                   role === 'POLICE' ? 'Police ID' :
-                   role === 'JUDGE' ? 'Judge ID' : 'Bar ID'}
-                </Label>
-                <Input
-                  id="identifier"
-                  type="text"
-                  placeholder={config.placeholder}
-                  value={identifier}
-                  onChange={(e) => setIdentifier(e.target.value)}
-                  required
-                />
-              </div>
+              {/* Identifier Input (only for existing roles) */}
+              {(role === 'CITIZEN' || role === 'POLICE' || role === 'JUDGE' || role === 'LAWYER') && (
+                <div className="space-y-2">
+                  <Label htmlFor="identifier">
+                    {role === 'CITIZEN' ? 'National ID' :
+                     role === 'POLICE' ? 'Police ID' :
+                     role === 'JUDGE' ? 'Judge ID' : 'Bar ID'}
+                  </Label>
+                  <Input
+                    id="identifier"
+                    type="text"
+                    placeholder={config.placeholder}
+                    value={identifier}
+                    onChange={(e) => setIdentifier(e.target.value)}
+                    required
+                  />
+                </div>
+              )}
 
-              {/* Password Input */}
+              {/* Office selection for authority roles */}
+              {(role === 'AUTHORITY_HANDLER' || role === 'AUTHORITY_ADMIN') && (
+                <div className="space-y-2">
+                  <Label>Select Authority Office</Label>
+                  <Select value={authorityOfficeId} onValueChange={(v) => setAuthorityOfficeId(v)}>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Choose office" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {authorities.map((a) => (
+                        <SelectItem key={a.id} value={a.id}>{a.name}</SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+              )}
+
+              {/* Password Input (dummy for authority/grievance roles) */}
               <div className="space-y-2">
                 <Label htmlFor="password">Password</Label>
                 <Input
                   id="password"
                   type="password"
-                  placeholder="Enter your password"
+                  placeholder={role === 'AUTHORITY_HANDLER' || role === 'AUTHORITY_ADMIN' || role === 'GRIEVANCE_ADMIN' ? 'Enter any password' : 'Enter your password'}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  required
+                  required={role === 'CITIZEN' || role === 'POLICE' || role === 'JUDGE' || role === 'LAWYER'}
                 />
               </div>
 
@@ -184,7 +263,7 @@ export const Login = () => {
 
               <Button 
                 type="submit" 
-                className="w-full btn-hero" 
+                className="w-full bg-gradient-to-r from-primary to-primary-hover hover:from-primary-hover hover:to-secondary text-white shadow-lg hover:shadow-xl transition-all duration-300 font-semibold" 
                 disabled={isLoading}
               >
                 {isLoading ? (

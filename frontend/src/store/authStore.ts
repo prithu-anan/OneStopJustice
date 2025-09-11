@@ -1,7 +1,15 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
-export type UserRole = 'CITIZEN' | 'POLICE' | 'OC' | 'JUDGE' | 'LAWYER';
+export type UserRole =
+  | 'CITIZEN'
+  | 'POLICE'
+  | 'OC'
+  | 'JUDGE'
+  | 'LAWYER'
+  | 'AUTHORITY_HANDLER'
+  | 'AUTHORITY_ADMIN'
+  | 'GRIEVANCE_ADMIN';
 
 export interface User {
   id: string;
@@ -18,6 +26,9 @@ export interface User {
   courtName?: string; // Judges
   firmName?: string; // Lawyers
   isOC?: boolean; // Police OC
+  // Authority roles
+  authorityId?: string; // For AUTHORITY_HANDLER: current office id
+  managedAuthorityIds?: string[]; // For AUTHORITY_ADMIN: offices managed
 }
 
 interface AuthState {

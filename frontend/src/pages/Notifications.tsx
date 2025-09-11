@@ -220,7 +220,7 @@ export const Notifications = () => {
       case 'LAWYER_REQUEST_ACCEPTED':
       case 'LAWYER_REQUEST_REJECTED':
       case 'LAWYER_REQUEST_PENDING':
-        return <Scale className="h-4 w-4 text-teal-500" />;
+        return <Scale className="h-4 w-4 text-primary" />;
       default:
         return <Bell className="h-4 w-4 text-gray-500" />;
     }

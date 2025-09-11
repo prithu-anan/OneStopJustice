@@ -426,7 +426,7 @@ export const JudgeCases = () => {
         </div>
 
         {/* Search */}
-        <Card className="card-elegant mb-6">
+        <Card className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm mb-6">
           <CardContent className="pt-6">
             <div className="relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
@@ -444,7 +444,7 @@ export const JudgeCases = () => {
         <div className="space-y-4">
           {isLoading ? (
             [...Array(5)].map((_, i) => (
-              <Card key={i} className="card-elegant">
+              <Card key={i} className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm">
                 <CardContent className="p-6">
                   <div className="space-y-3">
                     <Skeleton className="h-6 w-1/3" />
@@ -455,7 +455,7 @@ export const JudgeCases = () => {
               </Card>
             ))
           ) : filteredCases.length === 0 ? (
-            <Card className="card-elegant">
+            <Card className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm">
               <CardContent className="text-center py-12">
                 <Scale className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
                 <h3 className="text-lg font-medium mb-2">
@@ -471,7 +471,7 @@ export const JudgeCases = () => {
             </Card>
           ) : (
             filteredCases.map((case_) => (
-              <Card key={case_._id} className="card-elegant hover:shadow-md transition-shadow">
+              <Card key={case_._id} className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm hover:shadow-md transition-shadow">
                 <CardContent className="p-6">
                   <div className="flex items-start justify-between">
                     <div className="flex-1">
@@ -1141,7 +1141,7 @@ export const JudgeCases = () => {
 
         {/* Summary */}
         {!isLoading && (
-          <Card className="card-elegant mt-8">
+          <Card className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm mt-8">
             <CardContent className="pt-6">
               <div className="flex items-center justify-between text-sm text-muted-foreground">
                 <span>

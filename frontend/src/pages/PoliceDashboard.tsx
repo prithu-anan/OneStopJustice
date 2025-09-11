@@ -184,13 +184,13 @@ export const PoliceDashboard = () => {
 
   const getStatusColor = (status: string) => {
     switch (status) {
-      case 'PENDING': return 'bg-yellow-100 text-yellow-800';
+      case 'PENDING': return 'bg-warning/10 text-warning border border-warning/20';
       case 'ASSIGNED': 
       case 'UNDER_INVESTIGATION': 
-      case 'ONGOING': return 'bg-blue-100 text-blue-800';
+      case 'ONGOING': return 'bg-primary/10 text-primary border border-primary/20';
       case 'FIR_REGISTERED': 
-      case 'CLOSED': return 'bg-green-100 text-green-800';
-      default: return 'bg-gray-100 text-gray-800';
+      case 'CLOSED': return 'bg-success/10 text-success border border-success/20';
+      default: return 'bg-muted/10 text-muted-foreground border border-muted/20';
     }
   };
 
@@ -198,7 +198,7 @@ export const PoliceDashboard = () => {
     <div className="space-y-6">
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
         {[...Array(4)].map((_, index) => (
-          <Card key={index} className="card-elegant">
+          <Card key={index} className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm">
             <CardContent className="p-6">
               <div className="space-y-2">
                 <Skeleton className="h-8 w-8 rounded-lg" />
@@ -211,7 +211,7 @@ export const PoliceDashboard = () => {
       </div>
       
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <Card className="card-elegant">
+        <Card className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm">
           <CardHeader>
             <Skeleton className="h-6 w-32" />
           </CardHeader>
@@ -231,7 +231,7 @@ export const PoliceDashboard = () => {
           </CardContent>
         </Card>
         
-        <Card className="card-elegant">
+        <Card className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm">
           <CardHeader>
             <Skeleton className="h-6 w-32" />
           </CardHeader>
@@ -298,11 +298,11 @@ export const PoliceDashboard = () => {
 
           {/* Stats Cards */}
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
-            <Card className="card-elegant">
+            <Card className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm">
               <CardContent className="p-6">
                 <div className="flex items-center gap-4">
-                  <div className="p-3 rounded-lg bg-blue-100">
-                    <FileText className="h-6 w-6 text-blue-600" />
+                  <div className="p-3 rounded-lg bg-primary/10">
+                    <FileText className="h-6 w-6 text-primary" />
                   </div>
                   <div>
                     <p className="text-2xl font-bold">{stats.complaints}</p>
@@ -312,11 +312,11 @@ export const PoliceDashboard = () => {
               </CardContent>
             </Card>
 
-            <Card className="card-elegant">
+            <Card className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm">
               <CardContent className="p-6">
                 <div className="flex items-center gap-4">
-                  <div className="p-3 rounded-lg bg-purple-100">
-                    <Scale className="h-6 w-6 text-purple-600" />
+                  <div className="p-3 rounded-lg bg-tertiary/10">
+                    <Scale className="h-6 w-6 text-tertiary" />
                   </div>
                   <div>
                     <p className="text-2xl font-bold">{stats.cases}</p>
@@ -326,11 +326,11 @@ export const PoliceDashboard = () => {
               </CardContent>
             </Card>
 
-            <Card className="card-elegant">
+            <Card className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm">
               <CardContent className="p-6">
                 <div className="flex items-center gap-4">
-                  <div className="p-3 rounded-lg bg-orange-100">
-                    <Bell className="h-6 w-6 text-orange-600" />
+                  <div className="p-3 rounded-lg bg-warning/10">
+                    <Bell className="h-6 w-6 text-warning" />
                   </div>
                   <div>
                     <p className="text-2xl font-bold">{stats.notifications}</p>
@@ -340,11 +340,11 @@ export const PoliceDashboard = () => {
               </CardContent>
             </Card>
 
-            <Card className="card-elegant">
+            <Card className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm">
               <CardContent className="p-6">
                 <div className="flex items-center gap-4">
-                  <div className="p-3 rounded-lg bg-green-100">
-                    <TrendingUp className="h-6 w-6 text-green-600" />
+                  <div className="p-3 rounded-lg bg-success/10">
+                    <TrendingUp className="h-6 w-6 text-success" />
                   </div>
                   <div>
                     <p className="text-2xl font-bold">{stats.complaints + stats.cases}</p>
@@ -357,7 +357,7 @@ export const PoliceDashboard = () => {
 
           {/* OC Management Section */}
           {user?.isOC && (
-            <Card className="card-elegant mb-8">
+            <Card className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm mb-8">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <Shield className="h-5 w-5 text-blue-600" />
@@ -373,10 +373,10 @@ export const PoliceDashboard = () => {
                     <CardContent className="p-4">
                       <div className="flex items-center justify-between">
                         <div>
-                          <p className="text-sm text-gray-600">Pending Assignments</p>
-                          <p className="text-2xl font-bold text-yellow-600">-</p>
+                          <p className="text-sm text-muted-foreground">Pending Assignments</p>
+                          <p className="text-2xl font-bold text-warning">-</p>
                         </div>
-                        <Clock className="h-8 w-8 text-yellow-600" />
+                        <Clock className="h-8 w-8 text-warning" />
                       </div>
                     </CardContent>
                   </Card>
@@ -385,10 +385,10 @@ export const PoliceDashboard = () => {
                     <CardContent className="p-4">
                       <div className="flex items-center justify-between">
                         <div>
-                          <p className="text-sm text-gray-600">Station Officers</p>
-                          <p className="text-2xl font-bold text-blue-600">-</p>
+                          <p className="text-sm text-muted-foreground">Station Officers</p>
+                          <p className="text-2xl font-bold text-primary">-</p>
                         </div>
-                        <Users className="h-8 w-8 text-blue-600" />
+                        <Users className="h-8 w-8 text-primary" />
                       </div>
                     </CardContent>
                   </Card>
@@ -397,10 +397,10 @@ export const PoliceDashboard = () => {
                     <CardContent className="p-4">
                       <div className="flex items-center justify-between">
                         <div>
-                          <p className="text-sm text-gray-600">Assigned Today</p>
-                          <p className="text-2xl font-bold text-green-600">-</p>
+                          <p className="text-sm text-muted-foreground">Assigned Today</p>
+                          <p className="text-2xl font-bold text-success">-</p>
                         </div>
-                        <CheckCircle className="h-8 w-8 text-green-600" />
+                        <CheckCircle className="h-8 w-8 text-success" />
                       </div>
                     </CardContent>
                   </Card>
@@ -412,7 +412,7 @@ export const PoliceDashboard = () => {
           {/* Main Content Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
             {/* Recent Activity */}
-            <Card className="card-elegant">
+            <Card className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <Activity className="h-5 w-5" />
@@ -455,7 +455,7 @@ export const PoliceDashboard = () => {
             </Card>
 
             {/* Quick Actions */}
-            <Card className="card-elegant">
+            <Card className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm">
               <CardHeader>
                 <CardTitle>Quick Actions</CardTitle>
                 <CardDescription>
@@ -464,12 +464,12 @@ export const PoliceDashboard = () => {
               </CardHeader>
               <CardContent>
                 <div className="grid grid-cols-1 gap-3">
-                  <Button asChild className="justify-start h-auto p-4">
+                  <Button asChild className="justify-start h-auto p-4 bg-gradient-to-r from-primary to-primary-hover hover:from-primary-hover hover:to-secondary text-white shadow-lg hover:shadow-xl transition-all duration-300">
                     <Link to={user?.isOC ? "/police/oc/complaints" : "/police/complaints"}>
                       <FileText className="h-5 w-5 mr-3" />
                       <div className="text-left">
                         <div className="font-medium">{user?.isOC ? "Pending Complaints" : "View Complaints"}</div>
-                        <div className="text-sm opacity-70">{user?.isOC ? "Assign officers to complaints" : "Manage assigned complaints"}</div>
+                        <div className="text-sm opacity-90">{user?.isOC ? "Assign officers to complaints" : "Manage assigned complaints"}</div>
                       </div>
                     </Link>
                   </Button>
@@ -506,7 +506,7 @@ export const PoliceDashboard = () => {
 
                   {user?.isOC && (
                     <>
-                      <Button asChild variant="outline" className="justify-start h-auto p-4">
+                      <Button asChild variant="outline" className="justify-start h-auto p-4 border-primary/20 text-primary hover:bg-primary/10">
                         <Link to="/police/oc/complaints">
                           <FileText className="h-5 w-5 mr-3" />
                           <div className="text-left">
@@ -534,7 +534,7 @@ export const PoliceDashboard = () => {
 
           {/* Status Overview */}
           {(stats.complaints > 0 || stats.cases > 0) && (
-            <Card className="card-elegant">
+            <Card className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm">
               <CardHeader>
                 <CardTitle>Status Overview</CardTitle>
                 <CardDescription>

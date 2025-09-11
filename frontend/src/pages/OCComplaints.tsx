@@ -249,7 +249,7 @@ export const OCComplaints = () => {
           {/* Complaints List */}
           <div className="grid gap-4">
             {filteredComplaints.length === 0 ? (
-              <Card className="text-center py-12">
+              <Card className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 text-center py-12 backdrop-blur-sm">
                 <CardContent>
                   <FileText className="h-12 w-12 text-gray-400 mx-auto mb-4" />
                   <h3 className="text-lg font-semibold mb-2">No Complaints Found</h3>

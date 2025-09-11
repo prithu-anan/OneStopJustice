@@ -469,7 +469,7 @@ export const PoliceComplaintDetail = () => {
             {/* Left Column - Details */}
             <div className="lg:col-span-2 space-y-6">
               {/* Complaint Details */}
-              <Card className="card-elegant">
+              <Card className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm">
                 <CardHeader>
                   <CardTitle>Complaint Information</CardTitle>
                 </CardHeader>
@@ -500,7 +500,7 @@ export const PoliceComplaintDetail = () => {
               </Card>
 
               {/* Complainant Details */}
-              <Card className="card-elegant">
+              <Card className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm">
                 <CardHeader>
                   <CardTitle>Complainant Information</CardTitle>
                 </CardHeader>
@@ -539,7 +539,7 @@ export const PoliceComplaintDetail = () => {
 
               {/* Accused Persons */}
               {complaint.accused.length > 0 && (
-                <Card className="card-elegant">
+                <Card className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm">
                   <CardHeader>
                     <CardTitle>Accused Persons</CardTitle>
                   </CardHeader>
@@ -575,7 +575,7 @@ export const PoliceComplaintDetail = () => {
 
               {/* Attachments */}
               {complaint.attachments.length > 0 && (
-                <Card className="card-elegant">
+                <Card className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm">
                   <CardHeader>
                     <CardTitle>Evidence Attachments</CardTitle>
                   </CardHeader>
@@ -607,7 +607,7 @@ export const PoliceComplaintDetail = () => {
             {/* Right Column - Officers & Actions */}
             <div className="space-y-6">
               {/* Assigned Officers */}
-              <Card className="card-elegant">
+              <Card className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm">
                 <CardHeader>
                   <CardTitle>Assigned Officers</CardTitle>
                 </CardHeader>
@@ -634,7 +634,7 @@ export const PoliceComplaintDetail = () => {
               </Card>
 
               {/* Status Timeline */}
-              <Card className="card-elegant">
+              <Card className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm">
                 <CardHeader>
                   <CardTitle>Timeline</CardTitle>
                 </CardHeader>

@@ -223,7 +223,7 @@ export const FindLawyer = () => {
   const LoadingSkeleton = () => (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {[...Array(6)].map((_, index) => (
-        <Card key={index} className="card-elegant">
+        <Card key={index} className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm">
           <CardHeader>
             <Skeleton className="h-6 w-3/4" />
             <Skeleton className="h-4 w-1/2" />
@@ -284,7 +284,7 @@ export const FindLawyer = () => {
 
         {/* Stats */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-          <Card className="card-elegant">
+          <Card className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm">
             <CardContent className="p-4">
               <div className="flex items-center gap-3">
                 <div className="p-2 rounded-lg bg-blue-100">
@@ -298,7 +298,7 @@ export const FindLawyer = () => {
             </CardContent>
           </Card>
           
-          <Card className="card-elegant">
+          <Card className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm">
             <CardContent className="p-4">
               <div className="flex items-center gap-3">
                 <div className="p-2 rounded-lg bg-green-100">
@@ -314,7 +314,7 @@ export const FindLawyer = () => {
             </CardContent>
           </Card>
 
-          <Card className="card-elegant">
+          <Card className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm">
             <CardContent className="p-4">
               <div className="flex items-center gap-3">
                 <div className="p-2 rounded-lg bg-purple-100">
@@ -333,7 +333,7 @@ export const FindLawyer = () => {
         {loading ? (
           <LoadingSkeleton />
         ) : filteredLawyers.length === 0 ? (
-          <Card className="card-elegant">
+          <Card className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm">
             <CardContent className="p-8 text-center">
               <Users className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
               <h3 className="text-lg font-semibold mb-2">No Lawyers Found</h3>
@@ -353,7 +353,7 @@ export const FindLawyer = () => {
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredLawyers.map((lawyer) => (
-              <Card key={lawyer._id} className="card-elegant hover:shadow-lg transition-all duration-200">
+              <Card key={lawyer._id} className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm hover:shadow-lg transition-all duration-200">
                 <CardHeader>
                   <div className="flex items-start justify-between">
                     <div className="flex-1">

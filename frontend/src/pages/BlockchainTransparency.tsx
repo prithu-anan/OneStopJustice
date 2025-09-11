@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Layout } from '@/components/layout/Layout';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -30,6 +31,7 @@ const BlockchainTransparency: React.FC = () => {
   };
 
   return (
+    <Layout>
     <div className="container mx-auto px-4 py-8 space-y-8">
       {/* Hero Section */}
       <div className="text-center space-y-4">
@@ -63,36 +65,36 @@ const BlockchainTransparency: React.FC = () => {
 
       {/* Feature Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <Card className="hover:shadow-lg transition-shadow">
+        <Card className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 hover:shadow-lg hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm">
           <CardHeader className="text-center">
-            <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-4">
-              <Activity className="h-6 w-6 text-blue-600" />
+            <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-4">
+              <Activity className="h-6 w-6 text-primary" />
             </div>
-            <CardTitle>Live Blockchain Status</CardTitle>
+            <CardTitle className="text-foreground">Live Blockchain Status</CardTitle>
             <CardDescription>
               Real-time monitoring of blockchain network status, gas prices, and transaction activity
             </CardDescription>
           </CardHeader>
         </Card>
 
-        <Card className="hover:shadow-lg transition-shadow">
+        <Card className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 hover:shadow-lg hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm">
           <CardHeader className="text-center">
-            <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-4">
-              <Search className="h-6 w-6 text-green-600" />
+            <div className="w-12 h-12 bg-success/10 rounded-lg flex items-center justify-center mx-auto mb-4">
+              <Search className="h-6 w-6 text-success" />
             </div>
-            <CardTitle>Case Verification Portal</CardTitle>
+            <CardTitle className="text-foreground">Case Verification Portal</CardTitle>
             <CardDescription>
               Public verification portal for cases and evidence with blockchain proof
             </CardDescription>
           </CardHeader>
         </Card>
 
-        <Card className="hover:shadow-lg transition-shadow">
+        <Card className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 hover:shadow-lg hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm">
           <CardHeader className="text-center">
-            <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mx-auto mb-4">
-              <Hash className="h-6 w-6 text-purple-600" />
+            <div className="w-12 h-12 bg-tertiary/10 rounded-lg flex items-center justify-center mx-auto mb-4">
+              <Hash className="h-6 w-6 text-tertiary" />
             </div>
-            <CardTitle>Audit Trail</CardTitle>
+            <CardTitle className="text-foreground">Audit Trail</CardTitle>
             <CardDescription>
               Complete audit trail and transaction history for all legal actions
             </CardDescription>
@@ -123,9 +125,9 @@ const BlockchainTransparency: React.FC = () => {
       </Tabs>
 
       {/* Call to Action */}
-      <Card className="bg-gradient-to-r from-blue-50 to-purple-50 border-blue-200">
+      <Card className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm">
         <CardContent className="p-8 text-center">
-          <h2 className="text-2xl font-bold mb-4">Ready to Experience Transparency?</h2>
+          <h2 className="text-2xl font-bold mb-4 text-foreground">Ready to Experience Transparency?</h2>
           <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
             Join us in building a more transparent and credible legal system. 
             Our blockchain technology ensures that every action is verifiable and immutable.
@@ -133,7 +135,7 @@ const BlockchainTransparency: React.FC = () => {
           <div className="flex items-center justify-center gap-4">
             <Button 
               size="lg" 
-              className="bg-blue-600 hover:bg-blue-700"
+              className="bg-gradient-to-r from-primary to-primary-hover hover:from-primary-hover hover:to-secondary text-white shadow-lg hover:shadow-xl transition-all duration-300"
               onClick={handleExploreCases}
             >
               Explore Cases
@@ -142,6 +144,7 @@ const BlockchainTransparency: React.FC = () => {
             <Button 
               variant="outline" 
               size="lg"
+              className="border-primary/20 text-primary hover:bg-primary/10"
               onClick={handleViewOnExplorer}
             >
               <ExternalLink className="h-4 w-4 mr-2" />
@@ -152,9 +155,9 @@ const BlockchainTransparency: React.FC = () => {
       </Card>
 
       {/* Technical Information */}
-      <Card>
+      <Card className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm">
         <CardHeader>
-          <CardTitle className="flex items-center gap-2">
+          <CardTitle className="flex items-center gap-2 text-foreground">
             <Database className="h-5 w-5" />
             Technical Specifications
           </CardTitle>
@@ -162,45 +165,45 @@ const BlockchainTransparency: React.FC = () => {
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="space-y-4">
-              <h3 className="font-semibold text-lg">Blockchain Network</h3>
+              <h3 className="font-semibold text-lg text-foreground">Blockchain Network</h3>
               <div className="space-y-2 text-sm">
                 <div className="flex justify-between">
-                  <span>Network:</span>
-                  <span className="font-mono">Polygon Amoy Testnet</span>
+                  <span className="text-muted-foreground">Network:</span>
+                  <span className="font-mono text-foreground">Polygon Amoy Testnet</span>
                 </div>
                 <div className="flex justify-between">
-                  <span>Chain ID:</span>
-                  <span className="font-mono">80002</span>
+                  <span className="text-muted-foreground">Chain ID:</span>
+                  <span className="font-mono text-foreground">80002</span>
                 </div>
                 <div className="flex justify-between">
-                  <span>Consensus:</span>
-                  <span>Proof of Stake</span>
+                  <span className="text-muted-foreground">Consensus:</span>
+                  <span className="text-foreground">Proof of Stake</span>
                 </div>
                 <div className="flex justify-between">
-                  <span>Block Time:</span>
-                  <span>~2 seconds</span>
+                  <span className="text-muted-foreground">Block Time:</span>
+                  <span className="text-foreground">~2 seconds</span>
                 </div>
               </div>
             </div>
 
             <div className="space-y-4">
-              <h3 className="font-semibold text-lg">Smart Contract</h3>
+              <h3 className="font-semibold text-lg text-foreground">Smart Contract</h3>
               <div className="space-y-2 text-sm">
                 <div className="flex justify-between">
-                  <span>Language:</span>
-                  <span>Solidity 0.8.24</span>
+                  <span className="text-muted-foreground">Language:</span>
+                  <span className="text-foreground">Solidity 0.8.24</span>
                 </div>
                 <div className="flex justify-between">
-                  <span>Standard:</span>
-                  <span>ERC-20 Compatible</span>
+                  <span className="text-muted-foreground">Standard:</span>
+                  <span className="text-foreground">ERC-20 Compatible</span>
                 </div>
                 <div className="flex justify-between">
-                  <span>Security:</span>
-                  <span>Access Control</span>
+                  <span className="text-muted-foreground">Security:</span>
+                  <span className="text-foreground">Access Control</span>
                 </div>
                 <div className="flex justify-between">
-                  <span>Upgradeable:</span>
-                  <span>Yes</span>
+                  <span className="text-muted-foreground">Upgradeable:</span>
+                  <span className="text-foreground">Yes</span>
                 </div>
               </div>
             </div>
@@ -208,6 +211,7 @@ const BlockchainTransparency: React.FC = () => {
         </CardContent>
       </Card>
     </div>
+    </Layout>
   );
 };
 

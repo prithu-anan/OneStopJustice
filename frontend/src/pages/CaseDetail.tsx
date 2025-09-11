@@ -379,7 +379,7 @@ export const CaseDetail = () => {
 
               <TabsContent value="overview" className="space-y-6">
                 {/* Case Information */}
-                <Card className="card-elegant">
+                <Card className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm">
                   <CardHeader>
                     <CardTitle className="flex items-center gap-2">
                       <Scale className="h-5 w-5" />
@@ -430,7 +430,7 @@ export const CaseDetail = () => {
                 </Card>
 
                 {/* Parties Involved */}
-                <Card className="card-elegant">
+                <Card className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm">
                   <CardHeader>
                     <CardTitle className="flex items-center gap-2">
                       <Users className="h-5 w-5" />
@@ -593,7 +593,7 @@ export const CaseDetail = () => {
               </TabsContent>
 
               <TabsContent value="timeline" className="space-y-6">
-                <Card className="card-elegant">
+                <Card className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm">
                   <CardHeader>
                     <CardTitle className="flex items-center gap-2">
                       <History className="h-5 w-5" />
@@ -665,7 +665,7 @@ export const CaseDetail = () => {
               </TabsContent>
 
               <TabsContent value="documents" className="space-y-6">
-                <Card className="card-elegant">
+                <Card className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm">
                   <CardHeader>
                     <CardTitle className="flex items-center gap-2">
                       <FileText className="h-5 w-5" />
@@ -746,7 +746,7 @@ export const CaseDetail = () => {
           <div className="space-y-6">
             {/* Court Information */}
             {caseDetail.assignedJudgeId && (
-              <Card className="card-elegant">
+              <Card className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
                     <Building className="h-5 w-5" />
@@ -768,7 +768,7 @@ export const CaseDetail = () => {
 
             {/* Next Hearing */}
             {nextHearing && (
-              <Card className="card-elegant">
+              <Card className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
                     <Calendar className="h-5 w-5" />
@@ -793,7 +793,7 @@ export const CaseDetail = () => {
 
             {/* All Hearings */}
             {caseDetail.hearingDates && caseDetail.hearingDates.length > 0 && (
-              <Card className="card-elegant">
+              <Card className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
                     <Calendar className="h-5 w-5" />
@@ -817,7 +817,7 @@ export const CaseDetail = () => {
             )}
 
             {/* Quick Actions */}
-            <Card className="card-elegant">
+            <Card className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm">
               <CardHeader>
                 <CardTitle>Quick Actions</CardTitle>
                 <CardDescription>

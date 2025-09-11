@@ -4,24 +4,24 @@ import logoIcon from '@/assets/logo-icon.png';
 
 export const Footer = () => {
   return (
-    <footer className="bg-tertiary text-tertiary-foreground">
+    <footer className="bg-primary/10 dark:bg-muted/50 border-t">
       <div className="container py-12 px-4">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Brand */}
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
               <img src={logoIcon} alt="Justice Nexus Chain" className="h-8 w-8" />
-              <span className="font-bold text-lg">Justice Nexus Chain</span>
+              <span className="font-bold text-lg text-foreground">Justice Nexus Chain</span>
             </div>
-            <p className="text-tertiary-foreground/80 text-sm">
+            <p className="text-muted-foreground text-sm">
               Revolutionizing justice through transparent, efficient, and accessible legal processes.
             </p>
           </div>
 
           {/* Services */}
           <div>
-            <h3 className="font-semibold mb-4">Services</h3>
-            <ul className="space-y-2 text-sm text-tertiary-foreground/80">
+            <h3 className="font-semibold mb-4 text-foreground">Services</h3>
+            <ul className="space-y-2 text-sm text-muted-foreground">
               <li>
                 <Link to="/complaints" className="hover:text-primary transition-colors flex items-center gap-2">
                   <Shield className="h-3 w-3" />
@@ -51,8 +51,8 @@ export const Footer = () => {
 
           {/* Legal */}
           <div>
-            <h3 className="font-semibold mb-4">Legal</h3>
-            <ul className="space-y-2 text-sm text-tertiary-foreground/80">
+            <h3 className="font-semibold mb-4 text-foreground">Legal</h3>
+            <ul className="space-y-2 text-sm text-muted-foreground">
               <li>
                 <Link to="/privacy" className="hover:text-primary transition-colors">
                   Privacy Policy
@@ -78,8 +78,8 @@ export const Footer = () => {
 
           {/* Contact */}
           <div>
-            <h3 className="font-semibold mb-4">Contact</h3>
-            <ul className="space-y-2 text-sm text-tertiary-foreground/80">
+            <h3 className="font-semibold mb-4 text-foreground">Contact</h3>
+            <ul className="space-y-2 text-sm text-muted-foreground">
               <li>Emergency: 999</li>
               <li>Support: 1247</li>
               <li>Email: support@justicenexus.gov</li>
@@ -92,7 +92,7 @@ export const Footer = () => {
           </div>
         </div>
 
-        <div className="border-t border-tertiary-foreground/20 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-tertiary-foreground/60">
+        <div className="border-t border-border mt-8 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-muted-foreground">
           <p>&copy; 2025 Justice Nexus Chain. All rights reserved.</p>
           <p>Powered by blockchain technology for transparent justice.</p>
         </div>

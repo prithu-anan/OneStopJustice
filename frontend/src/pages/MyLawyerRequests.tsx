@@ -116,26 +116,26 @@ export const MyLawyerRequests = () => {
   const getStatusIcon = (status: string) => {
     switch (status) {
       case 'PENDING':
-        return <Clock className="h-4 w-4 text-yellow-500" />;
+        return <Clock className="h-4 w-4 text-warning" />;
       case 'ACCEPTED':
-        return <CheckCircle className="h-4 w-4 text-green-500" />;
+        return <CheckCircle className="h-4 w-4 text-success" />;
       case 'REJECTED':
-        return <XCircle className="h-4 w-4 text-red-500" />;
+        return <XCircle className="h-4 w-4 text-destructive" />;
       default:
-        return <AlertCircle className="h-4 w-4 text-gray-500" />;
+        return <AlertCircle className="h-4 w-4 text-muted-foreground" />;
     }
   };
 
   const getStatusColor = (status: string) => {
     switch (status) {
       case 'PENDING':
-        return 'bg-yellow-100 text-yellow-800 border-yellow-200';
+        return 'bg-amber-100 text-amber-800 border-amber-200 dark:bg-amber-900/20 dark:text-amber-300 dark:border-amber-700';
       case 'ACCEPTED':
-        return 'bg-green-100 text-green-800 border-green-200';
+        return 'bg-green-100 text-green-800 border-green-200 dark:bg-green-900/20 dark:text-green-300 dark:border-green-700';
       case 'REJECTED':
-        return 'bg-red-100 text-red-800 border-red-200';
+        return 'bg-red-100 text-red-800 border-red-200 dark:bg-red-900/20 dark:text-red-300 dark:border-red-700';
       default:
-        return 'bg-gray-100 text-gray-800 border-gray-200';
+        return 'bg-muted text-muted-foreground border-border';
     }
   };
 
@@ -152,7 +152,7 @@ export const MyLawyerRequests = () => {
   const LoadingSkeleton = () => (
     <div className="space-y-4">
       {[...Array(3)].map((_, index) => (
-        <Card key={index} className="card-elegant">
+        <Card key={index} className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm">
           <CardHeader>
             <div className="flex items-start justify-between">
               <div className="space-y-2 flex-1">
@@ -213,7 +213,7 @@ export const MyLawyerRequests = () => {
               <RefreshCw className={`h-4 w-4 ${refreshing ? 'animate-spin' : ''}`} />
               {refreshing ? 'Refreshing...' : 'Refresh'}
             </Button>
-            <Button asChild className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white">
+            <Button asChild className="bg-gradient-to-r from-primary to-primary-hover hover:from-primary-hover hover:to-secondary text-white shadow-lg hover:shadow-xl transition-all duration-300">
               <Link to="/find-lawyer">
                 <Plus className="h-4 w-4 mr-2" />
                 Request New Lawyer
@@ -224,7 +224,7 @@ export const MyLawyerRequests = () => {
 
         {/* Stats */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
-          <Card className="card-elegant">
+          <Card className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm">
             <CardContent className="p-4">
               <div className="flex items-center gap-3">
                 <div className="p-2 rounded-lg bg-blue-100">
@@ -238,7 +238,7 @@ export const MyLawyerRequests = () => {
             </CardContent>
           </Card>
           
-          <Card className="card-elegant">
+          <Card className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm">
             <CardContent className="p-4">
               <div className="flex items-center gap-3">
                 <div className="p-2 rounded-lg bg-yellow-100">
@@ -254,7 +254,7 @@ export const MyLawyerRequests = () => {
             </CardContent>
           </Card>
 
-          <Card className="card-elegant">
+          <Card className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm">
             <CardContent className="p-4">
               <div className="flex items-center gap-3">
                 <div className="p-2 rounded-lg bg-green-100">
@@ -270,7 +270,7 @@ export const MyLawyerRequests = () => {
             </CardContent>
           </Card>
 
-          <Card className="card-elegant">
+          <Card className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm">
             <CardContent className="p-4">
               <div className="flex items-center gap-3">
                 <div className="p-2 rounded-lg bg-red-100">
@@ -291,14 +291,14 @@ export const MyLawyerRequests = () => {
         {loading ? (
           <LoadingSkeleton />
         ) : requests.length === 0 ? (
-          <Card className="card-elegant">
+          <Card className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm">
             <CardContent className="p-8 text-center">
               <Users className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
               <h3 className="text-lg font-semibold mb-2">No Lawyer Requests Found</h3>
               <p className="text-muted-foreground mb-4">
                 You haven't requested any lawyers yet. Browse available lawyers and request representation for your cases.
               </p>
-              <Button asChild variant="outline">
+              <Button asChild variant="outline" className="border-primary/20 text-primary hover:bg-primary/10">
                 <Link to="/find-lawyer">Find Lawyers</Link>
               </Button>
             </CardContent>
@@ -306,7 +306,7 @@ export const MyLawyerRequests = () => {
         ) : (
           <div className="space-y-4">
             {requests.map((request) => (
-              <Card key={request._id} className="card-elegant hover:shadow-lg transition-all duration-200">
+              <Card key={request._id} className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm hover:shadow-lg transition-all duration-200">
                 <CardHeader>
                   <div className="flex items-start justify-between">
                     <div className="flex-1">
@@ -415,14 +415,14 @@ export const MyLawyerRequests = () => {
                     </div>
                     
                     <div className="flex gap-2">
-                      <Button asChild variant="outline" size="sm">
+                      <Button asChild variant="outline" size="sm" className="border-primary/20 text-primary hover:bg-primary/10">
                         <Link to={`/cases/${request.caseId._id}`}>
                           <Scale className="h-3 w-3 mr-1" />
                           View Case
                         </Link>
                       </Button>
                       {request.status === 'ACCEPTED' && (
-                        <Button asChild size="sm" className="bg-green-600 hover:bg-green-700">
+                        <Button asChild size="sm" className="bg-success hover:bg-success/90 text-white shadow-lg hover:shadow-xl transition-all duration-300">
                           <Link to={`/find-lawyer`}>
                             <Users className="h-3 w-3 mr-1" />
                             Contact Lawyer
@@ -430,7 +430,7 @@ export const MyLawyerRequests = () => {
                         </Button>
                       )}
                       {request.status === 'REJECTED' && (
-                        <Button asChild size="sm" variant="outline">
+                        <Button asChild size="sm" variant="outline" className="border-primary/20 text-primary hover:bg-primary/10">
                           <Link to="/find-lawyer">
                             <Send className="h-3 w-3 mr-1" />
                             Find Another Lawyer

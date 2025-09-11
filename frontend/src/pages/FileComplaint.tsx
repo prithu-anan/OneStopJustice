@@ -339,12 +339,12 @@ export const FileComplaint = () => {
           </Button>
           
           <div>
-            <h1 className="text-3xl font-bold text-slate-800 mb-2">File a New Complaint</h1>
-            <p className="text-slate-600">
+            <h1 className="text-3xl font-bold text-foreground mb-2">File a New Complaint</h1>
+            <p className="text-muted-foreground">
               Submit your complaint to the authorities for investigation and resolution
             </p>
             {user && (
-              <p className="text-sm text-slate-500 mt-1">
+              <p className="text-sm text-muted-foreground/70 mt-1">
                 Filing as: {user.name} ({user.nid})
               </p>
             )}
@@ -352,14 +352,14 @@ export const FileComplaint = () => {
         </div>
 
         {/* Instructions Card */}
-        <Card className="mb-6 border-0 shadow-lg bg-gradient-to-br from-blue-50 to-indigo-50">
+        <Card className="mb-6 border-0 shadow-lg bg-gradient-to-br from-primary/5 to-primary/10 border-primary/20">
           <CardHeader>
-            <CardTitle className="flex items-center gap-2 text-blue-800">
+            <CardTitle className="flex items-center gap-2 text-primary">
               <AlertCircle className="h-5 w-5" />
               Important Guidelines
             </CardTitle>
           </CardHeader>
-          <CardContent className="text-blue-700">
+          <CardContent className="text-primary/80">
             <ul className="list-disc list-inside space-y-1 text-sm">
               <li>Provide accurate and detailed information about the incident</li>
               <li>Include relevant evidence files (photos, videos, documents)</li>
@@ -373,13 +373,13 @@ export const FileComplaint = () => {
 
         {/* Main Form */}
         <form onSubmit={handleSubmit}>
-          <Card className="border-0 shadow-lg">
+          <Card className="border border-primary/20 dark:border-primary/30 shadow-lg bg-primary/5 dark:bg-primary/10 backdrop-blur-sm">
             <CardHeader>
-              <CardTitle className="flex items-center gap-2">
+              <CardTitle className="flex items-center gap-2 text-foreground">
                 <FileText className="h-5 w-5" />
                 Complaint Details
               </CardTitle>
-              <CardDescription>
+              <CardDescription className="text-muted-foreground">
                 Provide comprehensive details about your complaint
               </CardDescription>
             </CardHeader>
@@ -387,7 +387,7 @@ export const FileComplaint = () => {
             <CardContent className="space-y-6">
               {/* Title Field */}
               <div className="space-y-2">
-                <Label htmlFor="title" className="text-sm font-medium text-slate-700">
+                <Label htmlFor="title" className="text-sm font-medium text-foreground">
                   Complaint Title *
                 </Label>
                 <Input
@@ -395,37 +395,37 @@ export const FileComplaint = () => {
                   placeholder="e.g., Theft of personal belongings, Property damage, etc."
                   value={formData.title}
                   onChange={(e) => handleInputChange('title', e.target.value)}
-                  className={`${errors.title ? 'border-red-500 focus:border-red-500' : ''}`}
+                  className={`${errors.title ? 'border-destructive focus:border-destructive' : ''}`}
                   maxLength={100}
                 />
                 {errors.title && (
-                  <p className="text-sm text-red-600 flex items-center gap-1">
+                  <p className="text-sm text-destructive flex items-center gap-1">
                     <AlertCircle className="h-4 w-4" />
                     {errors.title}
                   </p>
                 )}
-                <p className="text-xs text-slate-500">
+                <p className="text-xs text-muted-foreground">
                   {formData.title.length}/100 characters
                 </p>
               </div>
 
               {/* Area/Police Station Field */}
               <div className="space-y-2">
-                <Label htmlFor="area" className="text-sm font-medium text-slate-700">
+                <Label htmlFor="area" className="text-sm font-medium text-foreground">
                   Police Station / Area *
                 </Label>
                 <Select 
                   value={formData.area} 
                   onValueChange={(value) => handleInputChange('area', value)}
                 >
-                  <SelectTrigger className={`${errors.area ? 'border-red-500 focus:border-red-500' : ''}`}>
+                  <SelectTrigger className={`${errors.area ? 'border-destructive focus:border-destructive' : ''}`}>
                     <SelectValue placeholder="Select the relevant police station or area" />
                   </SelectTrigger>
                   <SelectContent>
                     {policeStations.map((station) => (
                       <SelectItem key={station} value={station}>
                         <div className="flex items-center gap-2">
-                          <MapPin className="h-4 w-4 text-slate-400" />
+                          <MapPin className="h-4 w-4 text-muted-foreground" />
                           {station}
                         </div>
                       </SelectItem>
@@ -433,7 +433,7 @@ export const FileComplaint = () => {
                   </SelectContent>
                 </Select>
                 {errors.area && (
-                  <p className="text-sm text-red-600 flex items-center gap-1">
+                  <p className="text-sm text-destructive flex items-center gap-1">
                     <AlertCircle className="h-4 w-4" />
                     {errors.area}
                   </p>
@@ -442,7 +442,7 @@ export const FileComplaint = () => {
 
               {/* Description Field */}
               <div className="space-y-2">
-                <Label htmlFor="description" className="text-sm font-medium text-slate-700">
+                <Label htmlFor="description" className="text-sm font-medium text-foreground">
                   Detailed Description *
                 </Label>
                 <Textarea
@@ -450,16 +450,16 @@ export const FileComplaint = () => {
                   placeholder="Provide a detailed description of the incident including when, where, and what happened. Include any relevant details that might help with the investigation."
                   value={formData.description}
                   onChange={(e) => handleInputChange('description', e.target.value)}
-                  className={`min-h-32 ${errors.description ? 'border-red-500 focus:border-red-500' : ''}`}
+                  className={`min-h-32 ${errors.description ? 'border-destructive focus:border-destructive' : ''}`}
                   maxLength={1000}
                 />
                 {errors.description && (
-                  <p className="text-sm text-red-600 flex items-center gap-1">
+                  <p className="text-sm text-destructive flex items-center gap-1">
                     <AlertCircle className="h-4 w-4" />
                     {errors.description}
                   </p>
                 )}
-                <p className="text-xs text-slate-500">
+                <p className="text-xs text-muted-foreground">
                   {formData.description.length}/1000 characters
                 </p>
               </div>
@@ -467,7 +467,7 @@ export const FileComplaint = () => {
               {/* Accused Section */}
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
-                  <Label className="text-sm font-medium text-slate-700">
+                  <Label className="text-sm font-medium text-foreground">
                     Accused Persons (Optional)
                   </Label>
                   <Button
@@ -475,14 +475,14 @@ export const FileComplaint = () => {
                     variant="outline"
                     size="sm"
                     onClick={addAccused}
-                    className="flex items-center gap-2"
+                    className="flex items-center gap-2 border-primary/20 text-primary hover:bg-primary/10"
                   >
                     <UserPlus className="h-4 w-4" />
                     Add Accused
                   </Button>
                 </div>
                 
-                <p className="text-sm text-slate-600">
+                <p className="text-sm text-muted-foreground">
                   If you know the details of the accused persons, you can add them here. 
                   This information will help with the investigation.
                 </p>
@@ -490,10 +490,10 @@ export const FileComplaint = () => {
                 {accused.length > 0 && (
                   <div className="space-y-4">
                     {accused.map((acc, index) => (
-                      <Card key={acc.id} className="border border-slate-200">
+                      <Card key={acc.id} className="border border-primary/20 dark:border-primary/30 bg-primary/5 dark:bg-primary/10 backdrop-blur-sm">
                         <CardHeader className="pb-3">
                           <div className="flex items-center justify-between">
-                            <CardTitle className="text-lg flex items-center gap-2">
+                            <CardTitle className="text-lg flex items-center gap-2 text-foreground">
                               <Users className="h-5 w-5" />
                               Accused Person {index + 1}
                             </CardTitle>
@@ -502,7 +502,7 @@ export const FileComplaint = () => {
                               variant="ghost"
                               size="sm"
                               onClick={() => removeAccused(acc.id)}
-                              className="text-red-600 hover:text-red-700 hover:bg-red-50"
+                              className="text-destructive hover:text-destructive hover:bg-destructive/10"
                             >
                               <Trash2 className="h-4 w-4" />
                             </Button>
@@ -511,7 +511,7 @@ export const FileComplaint = () => {
                         <CardContent className="space-y-4">
                           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div className="space-y-2">
-                              <Label className="text-sm font-medium">Full Name *</Label>
+                              <Label className="text-sm font-medium text-foreground">Full Name *</Label>
                               <Input
                                 placeholder="Enter full name"
                                 value={acc.name}
@@ -520,7 +520,7 @@ export const FileComplaint = () => {
                               />
                             </div>
                             <div className="space-y-2">
-                              <Label className="text-sm font-medium">Address *</Label>
+                              <Label className="text-sm font-medium text-foreground">Address *</Label>
                               <Input
                                 placeholder="Enter address"
                                 value={acc.address}
@@ -529,7 +529,7 @@ export const FileComplaint = () => {
                               />
                             </div>
                             <div className="space-y-2">
-                              <Label className="text-sm font-medium">Phone Number</Label>
+                              <Label className="text-sm font-medium text-foreground">Phone Number</Label>
                               <Input
                                 placeholder="Enter phone number"
                                 value={acc.phone || ''}
@@ -537,7 +537,7 @@ export const FileComplaint = () => {
                               />
                             </div>
                             <div className="space-y-2">
-                              <Label className="text-sm font-medium">Email</Label>
+                              <Label className="text-sm font-medium text-foreground">Email</Label>
                               <Input
                                 type="email"
                                 placeholder="Enter email address"
@@ -546,7 +546,7 @@ export const FileComplaint = () => {
                               />
                             </div>
                             <div className="space-y-2">
-                              <Label className="text-sm font-medium">NID Number</Label>
+                              <Label className="text-sm font-medium text-foreground">NID Number</Label>
                               <Input
                                 placeholder="Enter NID number"
                                 value={acc.nid || ''}
@@ -554,7 +554,7 @@ export const FileComplaint = () => {
                               />
                             </div>
                             <div className="space-y-2">
-                              <Label className="text-sm font-medium">Age</Label>
+                              <Label className="text-sm font-medium text-foreground">Age</Label>
                               <Input
                                 type="number"
                                 placeholder="Enter age"
@@ -565,7 +565,7 @@ export const FileComplaint = () => {
                               />
                             </div>
                             <div className="space-y-2">
-                              <Label className="text-sm font-medium">Gender</Label>
+                              <Label className="text-sm font-medium text-foreground">Gender</Label>
                               <Select 
                                 value={acc.gender || ''} 
                                 onValueChange={(value) => updateAccused(acc.id, 'gender', value)}
@@ -581,7 +581,7 @@ export const FileComplaint = () => {
                               </Select>
                             </div>
                             <div className="space-y-2">
-                              <Label className="text-sm font-medium">Occupation</Label>
+                              <Label className="text-sm font-medium text-foreground">Occupation</Label>
                               <Input
                                 placeholder="Enter occupation"
                                 value={acc.occupation || ''}
@@ -589,7 +589,7 @@ export const FileComplaint = () => {
                               />
                             </div>
                             <div className="space-y-2">
-                              <Label className="text-sm font-medium">Relationship to You</Label>
+                              <Label className="text-sm font-medium text-foreground">Relationship to You</Label>
                               <Input
                                 placeholder="e.g., Neighbor, Colleague, Stranger"
                                 value={acc.relationshipToComplainant || ''}
@@ -607,33 +607,33 @@ export const FileComplaint = () => {
               {/* File Attachments */}
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
-                  <Label className="text-sm font-medium text-slate-700">
+                  <Label className="text-sm font-medium text-foreground">
                     Evidence & Attachments
                   </Label>
-                  <span className="text-xs text-slate-500">
+                  <span className="text-xs text-muted-foreground">
                     {attachments.length}/5 files
                   </span>
                 </div>
                 
                 {/* Upload Button */}
-                <div className="border-2 border-dashed border-slate-300 rounded-lg p-6 text-center hover:border-slate-400 transition-colors">
+                <div className="border-2 border-dashed border-border rounded-lg p-6 text-center hover:border-primary/50 transition-colors bg-muted/20">
                   <div className="space-y-2">
-                    <Upload className="h-8 w-8 text-slate-400 mx-auto" />
+                    <Upload className="h-8 w-8 text-muted-foreground mx-auto" />
                     <div>
                       <Button
                         type="button"
                         variant="outline"
                         onClick={() => fileInputRef.current?.click()}
                         disabled={attachments.length >= 5}
-                        className="mb-2"
+                        className="mb-2 border-primary/20 text-primary hover:bg-primary/10"
                       >
                         <Paperclip className="h-4 w-4 mr-2" />
                         Choose Files
                       </Button>
-                      <p className="text-sm text-slate-600">
+                      <p className="text-sm text-muted-foreground">
                         Upload photos, videos, or documents related to your complaint
                       </p>
-                      <p className="text-xs text-slate-500">
+                      <p className="text-xs text-muted-foreground/70">
                         JPG, PNG, PDF, MP4, AVI • Max 10MB each • Up to 5 files
                       </p>
                     </div>
@@ -651,19 +651,19 @@ export const FileComplaint = () => {
                 {/* Attached Files List */}
                 {attachments.length > 0 && (
                   <div className="space-y-2">
-                    <Label className="text-sm font-medium text-slate-700">
+                    <Label className="text-sm font-medium text-foreground">
                       Attached Files:
                     </Label>
                     <div className="space-y-2">
                       {attachments.map((attachment) => (
-                        <div key={attachment.id} className="flex items-center justify-between p-3 bg-slate-50 rounded-lg border">
+                        <div key={attachment.id} className="flex items-center justify-between p-3 bg-muted/30 rounded-lg border border-border">
                           <div className="flex items-center gap-3">
-                            <FileCheck className="h-4 w-4 text-green-600" />
+                            <FileCheck className="h-4 w-4 text-success" />
                             <div>
-                              <p className="text-sm font-medium text-slate-700">
+                              <p className="text-sm font-medium text-foreground">
                                 {attachment.name}
                               </p>
-                              <p className="text-xs text-slate-500">
+                              <p className="text-xs text-muted-foreground">
                                 {formatFileSize(attachment.size)} • {attachment.type}
                               </p>
                             </div>
@@ -673,7 +673,7 @@ export const FileComplaint = () => {
                             variant="ghost"
                             size="sm"
                             onClick={() => removeAttachment(attachment.id)}
-                            className="text-red-600 hover:text-red-700 hover:bg-red-50"
+                            className="text-destructive hover:text-destructive hover:bg-destructive/10"
                           >
                             <X className="h-4 w-4" />
                           </Button>
@@ -699,7 +699,7 @@ export const FileComplaint = () => {
             <Button
               type="submit"
               disabled={isSubmitting}
-              className="bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 text-white"
+              className="bg-gradient-to-r from-primary to-primary-hover hover:from-primary-hover hover:to-secondary text-white shadow-lg hover:shadow-xl transition-all duration-300"
             >
               {isSubmitting ? (
                 <>

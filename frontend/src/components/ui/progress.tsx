@@ -5,12 +5,15 @@ import { cn } from "@/lib/utils"
 
 const Progress = React.forwardRef<
   React.ElementRef<typeof ProgressPrimitive.Root>,
-  React.ComponentPropsWithoutRef<typeof ProgressPrimitive.Root>
->(({ className, value, ...props }, ref) => (
+  React.ComponentPropsWithoutRef<typeof ProgressPrimitive.Root> & {
+    incompleteColor?: string
+  }
+>(({ className, value, incompleteColor = "bg-gray-200 dark:bg-gray-700", ...props }, ref) => (
   <ProgressPrimitive.Root
     ref={ref}
     className={cn(
-      "relative h-4 w-full overflow-hidden rounded-full bg-secondary",
+      "relative h-4 w-full overflow-hidden rounded-full",
+      incompleteColor,
       className
     )}
     {...props}

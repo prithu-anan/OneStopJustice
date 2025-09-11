@@ -19,6 +19,7 @@ import {
   UserCheck,
   Hash
 } from "lucide-react";
+import { ThemeToggle } from "@/components/ui/theme-toggle";
 
 interface NotificationSummary {
   totalUnread: number;
@@ -106,7 +107,7 @@ export const Header = () => {
       <div className="container flex h-16 items-center justify-between px-4">
         {/* Logo */}
         <Link to="/" className="flex items-center space-x-2">
-          <img src="/stop.png" alt="OneStop Justice" className="h-8" />
+          <img src="/stop.png" alt="OneStop Justice" className="h-[120px]" />
         </Link>
 
         {/* Desktop Navigation */}
@@ -124,6 +125,11 @@ export const Header = () => {
                   Complaints
                 </Link>
               )}
+              {user.role === 'CITIZEN' && (
+                <Link to="/grievances" className="text-foreground hover:text-primary transition-colors">
+                  Grievances
+                </Link>
+              )}
               {user.role === 'POLICE' && (
                 <Link 
                   to={user.isOC ? "/police/oc/complaints" : "/police/complaints"} 
@@ -135,6 +141,16 @@ export const Header = () => {
               {user.role === 'CITIZEN' && (
                 <Link to="/cases" className="text-foreground hover:text-primary transition-colors">
                   Cases
+                </Link>
+              )}
+              {(user.role === 'AUTHORITY_HANDLER' || user.role === 'AUTHORITY_ADMIN') && (
+                <Link to="/authority/dashboard" className="text-foreground hover:text-primary transition-colors">
+                  Authority Dashboard
+                </Link>
+              )}
+              {user.role === 'GRIEVANCE_ADMIN' && (
+                <Link to="/grievance-admin/hierarchy" className="text-foreground hover:text-primary transition-colors">
+                  Grievance Admin
                 </Link>
               )}
               {user.role === 'CITIZEN' && (
@@ -195,13 +211,16 @@ export const Header = () => {
           )}
         </nav>
 
-        {/* Right side - Notifications and User Menu */}
+        {/* Right side - Theme Toggle, Notifications and User Menu */}
         <div className="flex items-center space-x-4">
+          {/* Theme Toggle - Available to all users */}
+          <ThemeToggle />
+          
           {user && (
             <>
               {/* WebSocket Connection Status */}
               <div className="hidden md:flex items-center space-x-2">
-                <div className={`w-2 h-2 rounded-full ${isConnected ? 'bg-green-500' : 'bg-red-500'}`} />
+                <div className={`w-2 h-2 rounded-full ${isConnected ? 'bg-success' : 'bg-danger'}`} />
                 <span className="text-xs text-muted-foreground">
                   {isConnected ? 'Connected' : 'Disconnected'}
                 </span>
@@ -212,7 +231,7 @@ export const Header = () => {
                 <DropdownMenuTrigger asChild>
                   <Button variant="ghost" size="sm" className="relative">
                     {totalUnread > 0 ? (
-                      <BellRing className="h-5 w-5 text-orange-500" />
+                      <BellRing className="h-5 w-5 text-warning" />
                     ) : (
                       <Bell className="h-5 w-5" />
                     )}
@@ -257,7 +276,7 @@ export const Header = () => {
                         <div 
                           key={notification._id} 
                           className={`p-3 border-b last:border-b-0 hover:bg-muted/50 cursor-pointer ${
-                            !notification.isRead ? 'bg-blue-50' : ''
+                            !notification.isRead ? 'bg-primary/5' : ''
                           }`}
                           onClick={() => {
                             if (!notification.isRead) {
@@ -268,9 +287,9 @@ export const Header = () => {
                         >
                           <div className="flex items-start space-x-3">
                             <div className={`w-2 h-2 rounded-full mt-2 ${
-                              notification.priority === 'urgent' ? 'bg-red-500' :
-                              notification.priority === 'high' ? 'bg-orange-500' :
-                              notification.priority === 'normal' ? 'bg-blue-500' : 'bg-gray-500'
+                              notification.priority === 'urgent' ? 'bg-danger' :
+                              notification.priority === 'high' ? 'bg-warning' :
+                              notification.priority === 'normal' ? 'bg-primary' : 'bg-muted-foreground'
                             }`} />
                             <div className="flex-1 min-w-0">
                               <p className={`text-sm font-medium ${!notification.isRead ? 'text-foreground' : 'text-muted-foreground'}`}>
@@ -362,6 +381,12 @@ export const Header = () => {
       {isMobileMenuOpen && (
         <div className="md:hidden border-t bg-card">
           <div className="container px-4 py-4 space-y-2">
+            {/* Theme Toggle for Mobile */}
+            <div className="flex items-center justify-between py-2 border-b">
+              <span className="text-sm font-medium">Theme</span>
+              <ThemeToggle />
+            </div>
+            
             {user ? (
               <>
                 <Link 
@@ -376,6 +401,9 @@ export const Header = () => {
                     <Link to="/complaints" className="block py-2 text-foreground hover:text-primary transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
                       Complaints
                     </Link>
+                    <Link to="/grievances" className="block py-2 text-foreground hover:text-primary transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
+                      Grievances
+                    </Link>
                     <Link to="/cases" className="block py-2 text-foreground hover:text-primary transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
                       Cases
                     </Link>
@@ -386,6 +414,16 @@ export const Header = () => {
                       Lawyer Requests
                     </Link>
                   </>
+                )}
+                {(user.role === 'AUTHORITY_HANDLER' || user.role === 'AUTHORITY_ADMIN') && (
+                  <Link to="/authority/dashboard" className="block py-2 text-foreground hover:text-primary transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
+                    Authority Dashboard
+                  </Link>
+                )}
+                {user.role === 'GRIEVANCE_ADMIN' && (
+                  <Link to="/grievance-admin/hierarchy" className="block py-2 text-foreground hover:text-primary transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
+                    Grievance Admin
+                  </Link>
                 )}
                 {user.role === 'POLICE' && (
                   <>

@@ -164,8 +164,8 @@ export const Dashboard = () => {
         value: stats.notifications,
         description: 'Unread updates',
         icon: Bell,
-        color: 'text-orange-600',
-        bgColor: 'bg-orange-100',
+        color: 'text-warning',
+        bgColor: 'bg-warning/10',
         link: '/notifications'
       }
     ];
@@ -178,8 +178,8 @@ export const Dashboard = () => {
             value: stats.complaints,
             description: 'Filed complaints',
             icon: FileText,
-            color: 'text-blue-600',
-            bgColor: 'bg-blue-100',
+            color: 'text-primary',
+            bgColor: 'bg-primary/10',
             link: '/complaints'
           },
           {
@@ -187,8 +187,8 @@ export const Dashboard = () => {
             value: stats.cases,
             description: 'Active cases',
             icon: Scale,
-            color: 'text-purple-600',
-            bgColor: 'bg-purple-100',
+            color: 'text-tertiary',
+            bgColor: 'bg-tertiary/10',
             link: '/cases'
           },
           ...baseCards
@@ -200,8 +200,8 @@ export const Dashboard = () => {
               value: stats.complaints,
               description: user?.isOC ? 'Awaiting assignment' : 'Under investigation',
               icon: FileText,
-              color: 'text-blue-600',
-              bgColor: 'bg-blue-100',
+              color: 'text-primary',
+              bgColor: 'bg-primary/10',
               link: user?.isOC ? '/police/oc/complaints' : '/police/complaints'
             },
           {
@@ -209,8 +209,8 @@ export const Dashboard = () => {
             value: stats.cases,
             description: 'Case proceedings',
             icon: Scale,
-            color: 'text-purple-600',
-            bgColor: 'bg-purple-100',
+            color: 'text-tertiary',
+            bgColor: 'bg-tertiary/10',
             link: '/police/cases'
           },
           ...baseCards
@@ -222,8 +222,8 @@ export const Dashboard = () => {
             value: stats.complaints,
             description: 'Awaiting review',
             icon: FileText,
-            color: 'text-blue-600',
-            bgColor: 'bg-blue-100',
+            color: 'text-primary',
+            bgColor: 'bg-primary/10',
             link: '/firs'
           },
           {
@@ -231,8 +231,8 @@ export const Dashboard = () => {
             value: stats.cases,
             description: 'Assigned cases',
             icon: Scale,
-            color: 'text-purple-600',
-            bgColor: 'bg-purple-100',
+            color: 'text-tertiary',
+            bgColor: 'bg-tertiary/10',
             link: '/cases'
           },
           ...baseCards
@@ -244,8 +244,8 @@ export const Dashboard = () => {
             value: stats.complaints,
             description: 'Pending requests',
             icon: Users,
-            color: 'text-blue-600',
-            bgColor: 'bg-blue-100',
+            color: 'text-primary',
+            bgColor: 'bg-primary/10',
             link: '/requests'
           },
           {
@@ -253,8 +253,8 @@ export const Dashboard = () => {
             value: stats.cases,
             description: 'Representing clients',
             icon: Scale,
-            color: 'text-purple-600',
-            bgColor: 'bg-purple-100',
+            color: 'text-tertiary',
+            bgColor: 'bg-tertiary/10',
             link: '/cases'
           },
           ...baseCards
@@ -298,15 +298,15 @@ export const Dashboard = () => {
   const getStatusIcon = (status: string) => {
     switch (status?.toLowerCase()) {
       case 'pending':
-        return <Clock className="h-4 w-4 text-orange-600" />;
+        return <Clock className="h-4 w-4 text-warning" />;
       case 'ongoing':
       case 'assigned':
-        return <TrendingUp className="h-4 w-4 text-blue-600" />;
+        return <TrendingUp className="h-4 w-4 text-primary" />;
       case 'completed':
       case 'closed':
-        return <CheckCircle className="h-4 w-4 text-green-600" />;
+        return <CheckCircle className="h-4 w-4 text-success" />;
       default:
-        return <AlertCircle className="h-4 w-4 text-gray-500" />;
+        return <AlertCircle className="h-4 w-4 text-muted-foreground" />;
     }
   };
 
@@ -330,8 +330,8 @@ export const Dashboard = () => {
       <Layout>
         <div className="min-h-screen flex items-center justify-center">
           <div className="text-center space-y-4">
-            <div className="animate-spin h-8 w-8 border-4 border-blue-600 border-t-transparent rounded-full mx-auto"></div>
-            <p className="text-gray-600">Loading dashboard...</p>
+            <div className="animate-spin h-8 w-8 border-4 border-primary border-t-transparent rounded-full mx-auto"></div>
+            <p className="text-muted-foreground">Loading dashboard...</p>
           </div>
         </div>
       </Layout>
@@ -346,7 +346,7 @@ export const Dashboard = () => {
           <h1 className="text-3xl lg:text-4xl font-bold">
             Welcome back, {user?.name}
           </h1>
-          <p className="text-lg text-gray-600">
+          <p className="text-lg text-muted-foreground">
             {getRoleDescription(user?.role)}
           </p>
         </div>
@@ -356,7 +356,7 @@ export const Dashboard = () => {
           {getDashboardCards().map((card, index) => {
             const Icon = card.icon;
             return (
-              <Card key={index} className="hover:shadow-lg transition-all duration-300 group cursor-pointer">
+              <Card key={index} className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 hover:shadow-lg hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 group cursor-pointer backdrop-blur-sm">
                 <Link to={card.link}>
                   <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                     <CardTitle className="text-sm font-medium">
@@ -368,7 +368,7 @@ export const Dashboard = () => {
                   </CardHeader>
                   <CardContent>
                     <div className="text-2xl font-bold">{card.value}</div>
-                    <p className="text-xs text-gray-600">
+                    <p className="text-xs text-muted-foreground">
                       {card.description}
                     </p>
                   </CardContent>
@@ -381,10 +381,10 @@ export const Dashboard = () => {
         {/* Quick Actions & Recent Activity */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Quick Actions */}
-          <Card className="shadow-sm">
+          <Card className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 shadow-sm hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <TrendingUp className="h-5 w-5 text-blue-600" />
+                <TrendingUp className="h-5 w-5 text-primary" />
                 Quick Actions
               </CardTitle>
               <CardDescription>
@@ -395,14 +395,14 @@ export const Dashboard = () => {
               {getQuickActions().map((action, index) => {
                 const Icon = action.icon;
                 return (
-                  <div key={index} className="flex items-center justify-between p-4 rounded-lg border border-gray-200 hover:bg-gray-50 transition-colors">
+                  <div key={index} className="flex items-center justify-between p-4 rounded-lg border hover:bg-muted/50 transition-colors">
                     <div className="flex items-center gap-3">
-                      <div className="p-2 rounded-lg bg-blue-100">
-                        <Icon className="h-4 w-4 text-blue-600" />
+                      <div className="p-2 rounded-lg bg-primary/10">
+                        <Icon className="h-4 w-4 text-primary" />
                       </div>
                       <div>
                         <h4 className="font-medium">{action.title}</h4>
-                        <p className="text-sm text-gray-600">{action.description}</p>
+                        <p className="text-sm text-muted-foreground">{action.description}</p>
                       </div>
                     </div>
                     <Button variant="ghost" size="sm" asChild>
@@ -415,10 +415,10 @@ export const Dashboard = () => {
           </Card>
 
           {/* Recent Activity */}
-          <Card className="shadow-sm">
+          <Card className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 shadow-sm hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <Clock className="h-5 w-5 text-purple-600" />
+                <Clock className="h-5 w-5 text-tertiary" />
                 Recent Activity
               </CardTitle>
               <CardDescription>
@@ -441,10 +441,10 @@ export const Dashboard = () => {
                           </Badge>
                         )}
                       </div>
-                      <p className="text-sm text-gray-600 mt-1">
+                      <p className="text-sm text-muted-foreground mt-1">
                         {activity.description}
                       </p>
-                      <p className="text-xs text-gray-500 mt-1">
+                      <p className="text-xs text-muted-foreground/70 mt-1">
                         {activity.time}
                       </p>
                     </div>
@@ -464,7 +464,7 @@ export const Dashboard = () => {
         </div>
 
         {/* Progress Overview */}
-        <Card className="shadow-sm">
+        <Card className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 shadow-sm hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm">
           <CardHeader>
             <CardTitle>System Overview</CardTitle>
             <CardDescription>
@@ -476,16 +476,16 @@ export const Dashboard = () => {
               <div className="space-y-2">
                 <div className="flex justify-between items-center">
                   <span className="text-sm font-medium">Case Resolution Rate</span>
-                  <span className="text-sm text-gray-600">87%</span>
+                  <span className="text-sm text-muted-foreground">87%</span>
                 </div>
-                <Progress value={87} className="h-2" />
+                <Progress value={87} className="h-2 bg-muted/30 [&>div]:bg-gradient-to-r [&>div]:from-primary/70 [&>div]:to-primary/90" />
               </div>
               <div className="space-y-2">
                 <div className="flex justify-between items-center">
                   <span className="text-sm font-medium">Average Response Time</span>
-                  <span className="text-sm text-gray-600">2.3 days</span>
+                  <span className="text-sm text-muted-foreground">2.3 days</span>
                 </div>
-                <Progress value={75} className="h-2" />
+                <Progress value={75} className="h-2 bg-muted/30 [&>div]:bg-gradient-to-r [&>div]:from-secondary/70 [&>div]:to-secondary/90" />
               </div>
             </div>
           </CardContent>
