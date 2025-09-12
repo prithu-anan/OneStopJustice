@@ -8,11 +8,13 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Switch } from '@/components/ui/switch';
+import { Alert, AlertDescription } from '@/components/ui/alert';
 import { useToast } from '@/hooks/use-toast';
 import { useAuthStore } from '@/store/authStore';
 import { useGrievanceStore } from '@/store/grievanceStore';
 import { EscalationRule } from '@/lib/grievance';
-import { AlertCircle, ArrowLeft, Paperclip, Send } from 'lucide-react';
+import { llmService, LLMAnalysisResult } from '@/lib/llmService';
+import { AlertCircle, ArrowLeft, Paperclip, Send, Wand2, Loader2 } from 'lucide-react';
 
 interface FormData {
   category: string;
@@ -53,6 +55,7 @@ export default function FileGrievance() {
   });
   const [attachments, setAttachments] = useState<File[]>([]);
   const [errors, setErrors] = useState<Partial<Record<keyof FormData, string>>>({});
+  const [isAnalyzing, setIsAnalyzing] = useState(false);
 
   const availableRules: EscalationRule[] = useMemo(
     () => rules.filter((r) => (!form.category || r.category === form.category) && (!form.departmentId || r.departmentId === form.departmentId)),
@@ -76,11 +79,12 @@ export default function FileGrievance() {
     if (errors[key]) setErrors((e) => ({ ...e, [key]: undefined }));
   };
 
+
   const validate = () => {
     const e: Partial<Record<keyof FormData, string>> = {};
-    if (!form.category) e.category = 'Select a category';
-    if (!form.departmentId) e.departmentId = 'Select a department';
-    if (!form.authorityId) e.authorityId = 'Select an authority';
+    if (!form.category || form.category.startsWith('auto-detect-')) e.category = 'Select a category';
+    if (!form.departmentId || form.departmentId.startsWith('auto-detect-')) e.departmentId = 'Select a department';
+    if (!form.authorityId || form.authorityId.startsWith('auto-detect-')) e.authorityId = 'Select an authority';
     if (!form.subject || form.subject.trim().length < 5) e.subject = 'Min 5 characters';
     if (!form.description || form.description.trim().length < 20) e.description = 'Min 20 characters';
     setErrors(e);
@@ -97,27 +101,76 @@ export default function FileGrievance() {
     if (fileInputRef.current) fileInputRef.current.value = '';
   };
 
-  const onSubmit = (ev: React.FormEvent) => {
+  const onSubmit = async (ev: React.FormEvent) => {
     ev.preventDefault();
-    if (!validate() || !user) {
-      toast({ title: 'Validation error', description: 'Please fix the form errors', variant: 'destructive' });
+    if (!user) {
+      toast({ title: 'Error', description: 'User not found', variant: 'destructive' });
       return;
     }
-    const sla = firstRule?.slaDaysPerLevel?.[0] || 7;
-    const newG = fileGrievance({
-      citizenId: user.id,
-      category: form.category,
-      departmentId: form.departmentId,
-      authorityId: form.authorityId,
-      subject: form.subject,
-      description: form.description,
-      desiredOutcome: form.desiredOutcome,
-      attachments: attachments.map((f) => f.name),
-      slaDays: sla,
-      privacy: { shareContact: form.shareContact },
-    });
-    toast({ title: 'Grievance submitted', description: 'Tracking ID ' + newG.id });
-    navigate('/grievances');
+    
+    // Check if subject and description are filled
+    if (!form.subject.trim() || !form.description.trim()) {
+      toast({ title: 'Validation error', description: 'Subject and description are required', variant: 'destructive' });
+      return;
+    }
+    
+    setIsAnalyzing(true);
+    
+    try {
+      // Always perform LLM analysis to determine category, department, authority, and SLA
+      const analysis = await llmService.analyzeGrievance(
+        {
+          subject: form.subject,
+          description: form.description,
+          desiredOutcome: form.desiredOutcome
+        },
+        authorities,
+        rules
+      );
+      
+      // Use LLM suggestions for auto-detect fields, otherwise use user selections
+      const finalCategory = form.category.startsWith('auto-detect-') ? analysis.category : form.category;
+      const finalDepartmentId = form.departmentId.startsWith('auto-detect-') ? analysis.departmentId : form.departmentId;
+      const finalAuthorityId = form.authorityId.startsWith('auto-detect-') ? analysis.authorityId : form.authorityId;
+      
+      const newG = fileGrievance({
+        citizenId: user.id,
+        category: finalCategory,
+        departmentId: finalDepartmentId,
+        authorityId: finalAuthorityId,
+        subject: form.subject,
+        description: form.description,
+        desiredOutcome: form.desiredOutcome,
+        attachments: attachments.map((f) => f.name),
+        slaDays: analysis.suggestedSlaDays,
+        privacy: { shareContact: form.shareContact },
+      });
+      
+      toast({ 
+        title: 'Grievance submitted', 
+        description: `Tracking ID ${newG.id}. SLA: ${analysis.suggestedSlaDays} days` 
+      });
+      navigate('/grievances');
+    } catch (error) {
+      console.error('LLM analysis failed:', error);
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+      
+      if (errorMessage.includes('API key not provided')) {
+        toast({ 
+          title: 'API Key Required', 
+          description: 'Please configure your Gemini API key in Settings or set VITE_GEMINI_API_KEY in .env', 
+          variant: 'destructive' 
+        });
+      } else {
+        toast({ 
+          title: 'Analysis failed', 
+          description: 'Please check your API key configuration and try again', 
+          variant: 'destructive' 
+        });
+      }
+    } finally {
+      setIsAnalyzing(false);
+    }
   };
 
   return (
@@ -143,6 +196,12 @@ export default function FileGrievance() {
                       <SelectValue placeholder="Select category" />
                     </SelectTrigger>
                     <SelectContent>
+                      <SelectItem value="auto-detect-category" className="font-medium text-blue-600 dark:text-blue-400">
+                        <div className="flex items-center gap-2">
+                          <Wand2 className="h-4 w-4" />
+                          Auto Detect
+                        </div>
+                      </SelectItem>
                       {categories.map((c) => (<SelectItem key={c} value={c}>{c}</SelectItem>))}
                     </SelectContent>
                   </Select>
@@ -155,6 +214,12 @@ export default function FileGrievance() {
                       <SelectValue placeholder="Select department" />
                     </SelectTrigger>
                     <SelectContent>
+                      <SelectItem value="auto-detect-department" className="font-medium text-blue-600 dark:text-blue-400">
+                        <div className="flex items-center gap-2">
+                          <Wand2 className="h-4 w-4" />
+                          Auto Detect
+                        </div>
+                      </SelectItem>
                       {departments.map((d) => (<SelectItem key={d} value={d}>{d}</SelectItem>))}
                     </SelectContent>
                   </Select>
@@ -168,6 +233,12 @@ export default function FileGrievance() {
                     <SelectValue placeholder="Select authority" />
                   </SelectTrigger>
                   <SelectContent>
+                    <SelectItem value="auto-detect-authority" className="font-medium text-blue-600 dark:text-blue-400">
+                      <div className="flex items-center gap-2">
+                        <Wand2 className="h-4 w-4" />
+                        Auto Detect
+                      </div>
+                    </SelectItem>
                     {availableAuthorities.map((a) => (<SelectItem key={a.id} value={a.id}>{a.name}</SelectItem>))}
                   </SelectContent>
                 </Select>
@@ -183,10 +254,12 @@ export default function FileGrievance() {
                 <Textarea value={form.description} onChange={(e) => onChange('description', e.target.value)} placeholder="Detailed description" className={`${errors.description ? 'border-destructive' : ''}`}/>
                 {errors.description && (<p className="text-sm text-destructive flex items-center gap-1"><AlertCircle className="h-4 w-4"/>{errors.description}</p>)}
               </div>
+
               <div className="space-y-2">
                 <Label>Desired Outcome</Label>
                 <Textarea value={form.desiredOutcome} onChange={(e) => onChange('desiredOutcome', e.target.value)} placeholder="What would you consider a satisfactory resolution?"/>
               </div>
+              
               <div className="space-y-2">
                 <Label>Attachments</Label>
                 <div className="border-2 border-dashed rounded-md p-4 text-center">
@@ -202,13 +275,23 @@ export default function FileGrievance() {
             </CardContent>
           </Card>
           <div className="flex justify-end gap-3">
-            <Button type="button" variant="outline" onClick={() => navigate('/grievances')}>Cancel</Button>
-            <Button type="submit"><Send className="h-4 w-4 mr-2"/>Submit Grievance</Button>
+            <Button type="button" variant="outline" onClick={() => navigate('/grievances')} disabled={isAnalyzing}>Cancel</Button>
+            <Button type="submit" disabled={isAnalyzing}>
+              {isAnalyzing ? (
+                <>
+                  <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                  Analyzing & Submitting...
+                </>
+              ) : (
+                <>
+                  <Send className="h-4 w-4 mr-2" />
+                  Submit Grievance
+                </>
+              )}
+            </Button>
           </div>
         </form>
       </div>
     </Layout>
   );
 }
-
-

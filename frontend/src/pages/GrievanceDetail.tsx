@@ -7,8 +7,16 @@ import { Badge } from '@/components/ui/badge';
 import { Textarea } from '@/components/ui/textarea';
 import { useGrievanceStore } from '@/store/grievanceStore';
 import { useAuthStore } from '@/store/authStore';
-import { daysRemaining, isSlaBreached, GrievanceEvent } from '@/lib/grievance';
-import { ArrowLeft } from 'lucide-react';
+import { 
+  daysRemaining, 
+  isSlaBreached, 
+  GrievanceEvent,
+  isCitizenResponseDeadlineBreached,
+  isCitizenAutoCloseDeadlineBreached,
+  daysUntilCitizenResponseDeadline,
+  daysUntilCitizenAutoClose
+} from '@/lib/grievance';
+import { ArrowLeft, Clock, AlertTriangle } from 'lucide-react';
 
 export default function GrievanceDetail() {
   const { grievanceId } = useParams();
@@ -16,6 +24,7 @@ export default function GrievanceDetail() {
   const { user } = useAuthStore();
   const { grievances, authorities, rules, seedDemoData, provideInfo, escalate, accept, dispute } = useGrievanceStore();
   const [replyNote, setReplyNote] = useState('');
+  const [disputeReason, setDisputeReason] = useState('');
   useEffect(() => { seedDemoData(); }, [seedDemoData]);
   const g = useMemo(() => grievances.find((x) => x.id === grievanceId), [grievances, grievanceId]);
   const rule = useMemo(() => rules.find((r) => r.category === g?.category && r.departmentId === g?.departmentId), [rules, g]);
@@ -24,9 +33,19 @@ export default function GrievanceDetail() {
   const breached = isSlaBreached(g.statusSince, g.slaDays);
   const remaining = daysRemaining(g.statusSince, g.slaDays);
 
-  const canProvideInfo = g.status === 'INFO_REQUESTED' && user?.role === 'CITIZEN' && user.id === g.citizenId;
+  // Citizen response deadline checks
+  const citizenResponseBreached = isCitizenResponseDeadlineBreached(g.statusSince);
+  const citizenAutoCloseBreached = isCitizenAutoCloseDeadlineBreached(g.statusSince);
+  const daysUntilResponseDeadline = daysUntilCitizenResponseDeadline(g.statusSince);
+  const daysUntilAutoClose = daysUntilCitizenAutoClose(g.statusSince);
+
+  // Check if grievance should be auto-closed
+  const shouldAutoClose = (g.status === 'INFO_REQUESTED' || g.status === 'RESOLVED_PENDING_CONFIRM') 
+    && citizenAutoCloseBreached && user?.role === 'CITIZEN' && user.id === g.citizenId;
+
+  const canProvideInfo = g.status === 'INFO_REQUESTED' && user?.role === 'CITIZEN' && user.id === g.citizenId && !citizenAutoCloseBreached;
   const canEscalate = breached && user?.role === 'CITIZEN' && user.id === g.citizenId;
-  const canAccept = g.status === 'RESOLVED_PENDING_CONFIRM' && user?.role === 'CITIZEN' && user.id === g.citizenId;
+  const canAccept = g.status === 'RESOLVED_PENDING_CONFIRM' && user?.role === 'CITIZEN' && user.id === g.citizenId && !citizenAutoCloseBreached;
 
   const nextAuthorityId = (() => {
     if (!rule) return undefined;
@@ -54,10 +73,10 @@ export default function GrievanceDetail() {
   };
 
   const submitDispute = () => {
-    if (!user) return;
-    const event: GrievanceEvent = { type: 'DISPUTE', at: new Date().toISOString(), byRole: 'CITIZEN', byId: user.id, note: replyNote };
+    if (!user || !disputeReason.trim()) return;
+    const event: GrievanceEvent = { type: 'DISPUTE', at: new Date().toISOString(), byRole: 'CITIZEN', byId: user.id, note: disputeReason.trim() };
     dispute(g.id, event);
-    setReplyNote('');
+    setDisputeReason('');
   };
 
   return (
@@ -68,7 +87,20 @@ export default function GrievanceDetail() {
           <h1 className="text-2xl font-bold">{g.subject}</h1>
           <Badge>{g.status}</Badge>
         </div>
-        <div className="text-sm text-muted-foreground mb-4">Authority: {currentAuthorityName} • SLA: {breached ? 'Breached' : `${remaining} day(s) left`}</div>
+        <div className="text-sm text-muted-foreground mb-4">
+          Authority: {currentAuthorityName} • SLA: {breached ? 'Breached' : `${remaining} day(s) left`}
+          {(g.status === 'INFO_REQUESTED' || g.status === 'RESOLVED_PENDING_CONFIRM') && user?.role === 'CITIZEN' && user.id === g.citizenId && (
+            <span className="ml-4">
+              {citizenAutoCloseBreached ? (
+                <span className="text-red-600 font-medium">Auto-closed due to no response</span>
+              ) : citizenResponseBreached ? (
+                <span className="text-orange-600 font-medium">Response deadline passed - {daysUntilAutoClose} days until auto-close</span>
+              ) : (
+                <span className="text-blue-600">Response required in {daysUntilResponseDeadline} days</span>
+              )}
+            </span>
+          )}
+        </div>
         <Card className="mb-4 border border-primary/20 dark:border-primary/30 bg-primary/5 dark:bg-primary/10 backdrop-blur-sm"><CardContent className="py-4 whitespace-pre-wrap">{g.description}</CardContent></Card>
         <Card className="mb-6 border border-primary/20 dark:border-primary/30 bg-primary/5 dark:bg-primary/10 backdrop-blur-sm">
           <CardHeader><CardTitle>Timeline</CardTitle></CardHeader>
@@ -91,15 +123,39 @@ export default function GrievanceDetail() {
             </Card>
           )}
           {canAccept && (
-            <div className="flex gap-2">
-              <Button onClick={submitAccept}>Accept Resolution</Button>
-              <Button variant="outline" onClick={submitDispute}>Dispute</Button>
+            <div className="space-y-3">
+              <div className="flex gap-2">
+                <Button onClick={submitAccept}>Accept Resolution</Button>
+                <Button variant="outline" onClick={submitDispute} disabled={!disputeReason.trim()}>Dispute</Button>
+              </div>
+              <div className="space-y-2">
+                <label className="text-sm font-medium">Dispute Reasoning (Required)</label>
+                <Textarea 
+                  placeholder="Please explain why you dispute this resolution..." 
+                  value={disputeReason} 
+                  onChange={(e) => setDisputeReason(e.target.value)}
+                  className="min-h-[80px]"
+                />
+              </div>
             </div>
           )}
           {canEscalate && nextAuthorityId && (
             <div>
               <Button onClick={submitEscalate}>Escalate to next authority</Button>
             </div>
+          )}
+          {shouldAutoClose && (
+            <Card className="border-red-200 bg-red-50 dark:border-red-800 dark:bg-red-950">
+              <CardContent className="pt-6">
+                <div className="flex items-center gap-2 text-red-800 dark:text-red-200">
+                  <AlertTriangle className="h-5 w-5" />
+                  <span className="font-medium">This grievance has been auto-closed</span>
+                </div>
+                <p className="text-sm text-red-700 dark:text-red-300 mt-2">
+                  No response was provided within 15 days. The grievance is now closed and will be archived.
+                </p>
+              </CardContent>
+            </Card>
           )}
         </div>
       </div>

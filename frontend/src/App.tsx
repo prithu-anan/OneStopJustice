@@ -40,7 +40,9 @@ import GrievanceDetail from "./pages/GrievanceDetail";
 import AuthorityDashboard from "./pages/AuthorityDashboard";
 import AuthorityGrievanceDetail from "./pages/AuthorityGrievanceDetail";
 import HierarchyManager from "./pages/HierarchyManager";
+import GrievanceAdminDashboard from "./pages/GrievanceAdminDashboard";
 import EscalationRules from "./pages/EscalationRules";
+import Settings from "./pages/Settings";
 
 const queryClient = new QueryClient();
 
@@ -165,6 +167,14 @@ const App = () => (
             element={
               <ProtectedRoute>
                 <Notifications />
+              </ProtectedRoute>
+            } 
+          />
+          <Route 
+            path="/settings" 
+            element={
+              <ProtectedRoute>
+                <Settings />
               </ProtectedRoute>
             } 
           />
@@ -297,6 +307,14 @@ const App = () => (
           />
 
           {/* Grievance Admin */}
+          <Route 
+            path="/grievance-admin/dashboard" 
+            element={
+              <ProtectedRoute requiredRole="GRIEVANCE_ADMIN">
+                <GrievanceAdminDashboard />
+              </ProtectedRoute>
+            } 
+          />
           <Route 
             path="/grievance-admin/hierarchy" 
             element={

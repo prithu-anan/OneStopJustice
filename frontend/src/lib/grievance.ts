@@ -7,7 +7,10 @@ export type GrievanceStatus =
   | 'ESCALATED'
   | 'CLOSED_ACCEPTED'
   | 'CLOSED_AUTO'
-  | 'WITHDRAWN';
+  | 'WITHDRAWN'
+  | 'ARCHIVED'
+  | 'CLOSED_NO_RESPONSE'
+  | 'AUTHORITY_ESCALATED';
 
 export interface AuthorityRef {
   id: string;
@@ -30,7 +33,10 @@ export type GrievanceEventType =
   | 'ACCEPT'
   | 'ESCALATE'
   | 'AUTO_CLOSE'
-  | 'WITHDRAW';
+  | 'WITHDRAW'
+  | 'ARCHIVE'
+  | 'CLOSE_NO_RESPONSE'
+  | 'AUTHORITY_ESCALATE';
 
 export interface GrievanceEvent {
   type: GrievanceEventType;
@@ -81,6 +87,53 @@ export const isSlaBreached = (statusSinceIso: string, slaDays: number): boolean 
 export const daysRemaining = (statusSinceIso: string, slaDays: number): number => {
   const since = new Date(statusSinceIso).getTime();
   const deadline = since + slaDays * 24 * 60 * 60 * 1000;
+  const diffMs = deadline - Date.now();
+  return Math.ceil(diffMs / (24 * 60 * 60 * 1000));
+};
+
+// Citizen response deadlines
+export const CITIZEN_RESPONSE_DEADLINE_DAYS = 3;
+export const CITIZEN_AUTO_CLOSE_DAYS = 15;
+
+// Authority response deadlines
+export const AUTHORITY_RESPONSE_DEADLINE_DAYS = 3;
+
+export const isCitizenResponseDeadlineBreached = (statusSinceIso: string): boolean => {
+  const since = new Date(statusSinceIso).getTime();
+  const deadline = since + CITIZEN_RESPONSE_DEADLINE_DAYS * 24 * 60 * 60 * 1000;
+  return Date.now() >= deadline;
+};
+
+export const isCitizenAutoCloseDeadlineBreached = (statusSinceIso: string): boolean => {
+  const since = new Date(statusSinceIso).getTime();
+  const deadline = since + CITIZEN_AUTO_CLOSE_DAYS * 24 * 60 * 60 * 1000;
+  return Date.now() >= deadline;
+};
+
+export const daysUntilCitizenResponseDeadline = (statusSinceIso: string): number => {
+  const since = new Date(statusSinceIso).getTime();
+  const deadline = since + CITIZEN_RESPONSE_DEADLINE_DAYS * 24 * 60 * 60 * 1000;
+  const diffMs = deadline - Date.now();
+  return Math.ceil(diffMs / (24 * 60 * 60 * 1000));
+};
+
+export const daysUntilCitizenAutoClose = (statusSinceIso: string): number => {
+  const since = new Date(statusSinceIso).getTime();
+  const deadline = since + CITIZEN_AUTO_CLOSE_DAYS * 24 * 60 * 60 * 1000;
+  const diffMs = deadline - Date.now();
+  return Math.ceil(diffMs / (24 * 60 * 60 * 1000));
+};
+
+// Authority response deadline functions
+export const isAuthorityResponseDeadlineBreached = (statusSinceIso: string): boolean => {
+  const since = new Date(statusSinceIso).getTime();
+  const deadline = since + AUTHORITY_RESPONSE_DEADLINE_DAYS * 24 * 60 * 60 * 1000;
+  return Date.now() >= deadline;
+};
+
+export const daysUntilAuthorityResponseDeadline = (statusSinceIso: string): number => {
+  const since = new Date(statusSinceIso).getTime();
+  const deadline = since + AUTHORITY_RESPONSE_DEADLINE_DAYS * 24 * 60 * 60 * 1000;
   const diffMs = deadline - Date.now();
   return Math.ceil(diffMs / (24 * 60 * 60 * 1000));
 };

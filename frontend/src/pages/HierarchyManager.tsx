@@ -17,7 +17,7 @@ export default function HierarchyManager() {
     <Layout>
       <div className="container mx-auto px-4 py-8 max-w-4xl">
         <h1 className="text-3xl font-bold mb-6">Hierarchy Manager</h1>
-        <Card>
+        <Card className="bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 shadow-sm hover:bg-primary/10 dark:hover:bg-primary/15 transition-all duration-300 backdrop-blur-sm">
           <CardHeader><CardTitle>Authorities</CardTitle></CardHeader>
           <CardContent className="space-y-2">
             {authorities.map((a) => (

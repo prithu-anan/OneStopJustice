@@ -149,7 +149,7 @@ export const Header = () => {
                 </Link>
               )}
               {user.role === 'GRIEVANCE_ADMIN' && (
-                <Link to="/grievance-admin/hierarchy" className="text-foreground hover:text-primary transition-colors">
+                <Link to="/grievance-admin/dashboard" className="text-foreground hover:text-primary transition-colors">
                   Grievance Admin
                 </Link>
               )}
@@ -351,7 +351,7 @@ export const Header = () => {
                     <Hash className="mr-2 h-4 w-4" />
                     Blockchain Transparency
                   </DropdownMenuItem>
-                  <DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => navigate('/settings')}>
                     <Settings className="mr-2 h-4 w-4" />
                     Settings
                   </DropdownMenuItem>
@@ -421,7 +421,7 @@ export const Header = () => {
                   </Link>
                 )}
                 {user.role === 'GRIEVANCE_ADMIN' && (
-                  <Link to="/grievance-admin/hierarchy" className="block py-2 text-foreground hover:text-primary transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
+                  <Link to="/grievance-admin/dashboard" className="block py-2 text-foreground hover:text-primary transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
                     Grievance Admin
                   </Link>
                 )}
@@ -468,6 +468,9 @@ export const Header = () => {
                   </Link>
                   <Link to="/blockchain" className="block py-2 text-foreground hover:text-primary transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
                     Blockchain Transparency
+                  </Link>
+                  <Link to="/settings" className="block py-2 text-foreground hover:text-primary transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
+                    Settings
                   </Link>
                   <button 
                     onClick={handleLogout}

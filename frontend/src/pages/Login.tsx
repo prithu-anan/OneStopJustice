@@ -119,7 +119,7 @@ export const Login = () => {
         }
         login(userData, 'mock-token');
         toast({ title: 'Login Successful', description: `Welcome, ${userData.name}!` });
-        if (role === 'GRIEVANCE_ADMIN') navigate('/grievance-admin/hierarchy');
+        if (role === 'GRIEVANCE_ADMIN') navigate('/grievance-admin/dashboard');
         else navigate('/authority/dashboard');
         return;
       }
