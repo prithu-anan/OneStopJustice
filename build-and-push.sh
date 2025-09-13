@@ -17,9 +17,16 @@ echo "🚀 Starting Docker build and push process..."
 echo "📦 Building backend image..."
 docker build -f Dockerfile.backend -t ${DOCKERHUB_USERNAME}/${BACKEND_IMAGE_NAME}:${TAG} .
 
-# Build frontend image
+# Build frontend image with environment variables
 echo "📦 Building frontend image..."
-docker build -f frontend/Dockerfile -t ${DOCKERHUB_USERNAME}/${FRONTEND_IMAGE_NAME}:${TAG} ./frontend
+docker build \
+  --build-arg VITE_API_BASE_URL="${VITE_API_BASE_URL:-http://localhost:3001}" \
+  --build-arg VITE_IPFS_GATEWAY="${VITE_IPFS_GATEWAY:-https://ipfs.io/ipfs}" \
+  --build-arg VITE_NODE_ENV="${VITE_NODE_ENV:-production}" \
+  --build-arg VITE_GEMINI_API_KEY="${VITE_GEMINI_API_KEY}" \
+  -f frontend/Dockerfile \
+  -t ${DOCKERHUB_USERNAME}/${FRONTEND_IMAGE_NAME}:${TAG} \
+  ./frontend
 
 # Login to DockerHub (you'll need to enter your credentials)
 echo "🔐 Logging into DockerHub..."

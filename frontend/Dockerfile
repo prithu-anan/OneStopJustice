@@ -14,6 +14,18 @@ RUN npm ci
 # Copy source code
 COPY . .
 
+# Accept build-time environment variables
+ARG VITE_API_BASE_URL
+ARG VITE_IPFS_GATEWAY
+ARG VITE_NODE_ENV
+ARG VITE_GEMINI_API_KEY
+
+# Set environment variables for build
+ENV VITE_API_BASE_URL=$VITE_API_BASE_URL
+ENV VITE_IPFS_GATEWAY=$VITE_IPFS_GATEWAY
+ENV VITE_NODE_ENV=$VITE_NODE_ENV
+ENV VITE_GEMINI_API_KEY=$VITE_GEMINI_API_KEY
+
 # Build the application
 RUN npm run build
 

@@ -63,7 +63,6 @@ docker run -d \
   --name onestopjustice-frontend \
   --network onestopjustice-network \
   -p 5910:80 \
-  --env-file .env \
   prithuanan/onestopjustice-frontend:latest
 
 # Wait for Frontend to be ready
