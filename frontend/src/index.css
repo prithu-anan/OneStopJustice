@@ -19,19 +19,19 @@ All colors MUST be HSL.
     --popover: 0 0% 100%;
     --popover-foreground: 215 25% 15%;
 
-    /* Primary - Dark Green #025043 */
-    --primary: 170 95% 16%;
+    /* Primary - Royal Blue #4169e1 */
+    --primary: 225 73% 57%;
     --primary-foreground: 0 0% 100%;
-    --primary-hover: 170 95% 12%;
-    --primary-glow: 170 80% 35%;
+    --primary-hover: 225 73% 45%;
+    --primary-glow: 225 80% 70%;
 
-    /* Secondary - Darker green */
-    --secondary: 170 85% 12%;
+    /* Secondary - Darker blue */
+    --secondary: 225 85% 35%;
     --secondary-foreground: 0 0% 100%;
-    --secondary-hover: 170 85% 8%;
+    --secondary-hover: 225 85% 25%;
 
-    /* Tertiary - Lighter green */
-    --tertiary: 170 60% 25%;
+    /* Tertiary - Lighter blue */
+    --tertiary: 225 60% 45%;
     --tertiary-foreground: 0 0% 100%;
 
     /* Status colors */
@@ -45,7 +45,7 @@ All colors MUST be HSL.
     --muted: 210 40% 96%;
     --muted-foreground: 215 16% 47%;
 
-    --accent: 170 85% 12%;
+    --accent: 225 85% 35%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84% 60%;
@@ -53,11 +53,11 @@ All colors MUST be HSL.
 
     --border: 214 32% 91%;
     --input: 214 32% 91%;
-    --ring: 170 95% 16%;
+    --ring: 225 73% 57%;
 
     /* Gradients */
     --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
-    --gradient-hero: linear-gradient(135deg, hsl(170 80% 35%), hsl(170 95% 16%));
+    --gradient-hero: linear-gradient(135deg, hsl(225 80% 70%), hsl(225 73% 57%));
     --gradient-card: linear-gradient(145deg, hsl(0 0% 100%), hsl(210 20% 98%));
 
     /* Shadows */
@@ -103,16 +103,16 @@ All colors MUST be HSL.
     --popover: 215 25% 12%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 170 95% 20%;
+    --primary: 225 73% 65%;
     --primary-foreground: 0 0% 100%;
-    --primary-hover: 170 95% 25%;
-    --primary-glow: 170 80% 40%;
+    --primary-hover: 225 73% 55%;
+    --primary-glow: 225 80% 75%;
 
-    --secondary: 170 85% 15%;
+    --secondary: 225 85% 40%;
     --secondary-foreground: 0 0% 100%;
-    --secondary-hover: 170 85% 20%;
+    --secondary-hover: 225 85% 30%;
 
-    --tertiary: 170 60% 30%;
+    --tertiary: 225 60% 50%;
     --tertiary-foreground: 0 0% 100%;
 
     --success: 142 76% 46%;
@@ -122,7 +122,7 @@ All colors MUST be HSL.
     --muted: 215 25% 15%;
     --muted-foreground: 215 20% 65%;
 
-    --accent: 170 85% 15%;
+    --accent: 225 85% 40%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84% 70%;
@@ -130,10 +130,10 @@ All colors MUST be HSL.
 
     --border: 215 25% 18%;
     --input: 215 25% 18%;
-    --ring: 170 95% 20%;
+    --ring: 225 73% 65%;
 
     /* Dark gradients */
-    --gradient-hero: linear-gradient(135deg, hsl(170 80% 40%), hsl(170 95% 20%));
+    --gradient-hero: linear-gradient(135deg, hsl(225 80% 75%), hsl(225 73% 65%));
     --gradient-card: linear-gradient(145deg, hsl(215 25% 12%), hsl(215 30% 8%));
 
     /* Dark shadows */
