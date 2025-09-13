@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Scale, Shield, Users, Gavel } from 'lucide-react';
-import logoIcon from '@/assets/logo-icon.png';
+// Using stop.png from public folder
 
 export const Footer = () => {
   return (
@@ -10,11 +10,11 @@ export const Footer = () => {
           {/* Brand */}
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
-              <img src={logoIcon} alt="Justice Nexus Chain" className="h-8 w-8" />
-              <span className="font-bold text-lg text-foreground">Justice Nexus Chain</span>
+              <img src="/stop.png" alt="QuickSolve" className="h-8 w-8" />
+              <span className="font-bold text-lg text-foreground">QuickSolve</span>
             </div>
             <p className="text-muted-foreground text-sm">
-              Revolutionizing justice through transparent, efficient, and accessible legal processes.
+              Revolutionizing governance through transparent, efficient, and accessible solutions.
             </p>
           </div>
 
@@ -82,7 +82,7 @@ export const Footer = () => {
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li>Emergency: 999</li>
               <li>Support: 1247</li>
-              <li>Email: support@justicenexus.gov</li>
+              <li>Email: support@quicksolve.gov</li>
               <li>
                 <Link to="/contact" className="hover:text-primary transition-colors">
                   Contact Form
@@ -93,8 +93,8 @@ export const Footer = () => {
         </div>
 
         <div className="border-t border-border mt-8 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-muted-foreground">
-          <p>&copy; 2025 Justice Nexus Chain. All rights reserved.</p>
-          <p>Powered by blockchain technology for transparent justice.</p>
+          <p>&copy; 2025 QuickSolve. All rights reserved.</p>
+          <p>Powered by blockchain technology for transparent solutions.</p>
         </div>
       </div>
     </footer>

@@ -107,7 +107,7 @@ export const Header = () => {
       <div className="container flex h-16 items-center justify-between px-4">
         {/* Logo */}
         <Link to="/" className="flex items-center space-x-2">
-          <img src="/stop.png" alt="OneStop Justice" className="h-[120px]" />
+          <img src="/stop.png" alt="OneStop Justice" className="h-[60px]" />
         </Link>
 
         {/* Desktop Navigation */}

@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight, Shield, Scale, Users, Gavel, CheckCircle, FileText, Clock } from 'lucide-react';
+import { ArrowRight, Shield, Scale, Users, Gavel, CheckCircle, FileText, Clock, BarChart3, Brain, MapPin, Search, MessageCircle, Globe } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import logoIcon from '@/assets/logo-icon.png';
+// Using stop.png from public folder
 
 export const Landing = () => {
   const features = [
@@ -14,33 +14,33 @@ export const Landing = () => {
       color: 'text-primary'
     },
     {
-      icon: Shield,
-      title: 'Track Progress',
-      description: 'Real-time updates on your case status from complaint to verdict.',
+      icon: BarChart3,
+      title: 'Metadata Analysis',
+      description: 'Advanced data analysis to identify patterns and insights in case information.',
       color: 'text-secondary'
     },
     {
-      icon: Scale,
-      title: 'Transparent Justice',
-      description: 'Blockchain-powered transparency ensuring accountability at every step.',
+      icon: Brain,
+      title: 'AI based Auto Routing',
+      description: 'Intelligent case routing and assignment based on AI analysis and expertise matching.',
       color: 'text-warning'
     },
     {
-      icon: Users,
-      title: 'Connect with Lawyers',
-      description: 'Find and connect with qualified legal professionals for your case.',
+      icon: Search,
+      title: 'Track Progress',
+      description: 'Real-time updates on your case status from complaint to resolution.',
       color: 'text-success'
     },
     {
-      icon: Gavel,
-      title: 'Digital Hearings',
-      description: 'Schedule and attend hearings with digital integration and notifications.',
+      icon: MessageCircle,
+      title: 'Effortless Legal Connections',
+      description: 'Seamlessly connect with qualified legal professionals and case stakeholders.',
       color: 'text-tertiary'
     },
     {
-      icon: Clock,
-      title: 'Efficient Process',
-      description: 'Streamlined workflow from police investigation to court proceedings.',
+      icon: MapPin,
+      title: 'Real Time Spatial Data Visualization',
+      description: 'Interactive maps and spatial analytics for comprehensive case understanding.',
       color: 'text-danger'
     }
   ];
@@ -49,9 +49,9 @@ export const Landing = () => {
     'Digital complaint filing with evidence upload',
     'Real-time case tracking and notifications',
     'Transparent investigation process',
-    'Direct lawyer communication',
+    'Direct professional communication',
     'Blockchain-secured document storage',
-    'Automated hearing scheduling'
+    'Automated case scheduling'
   ];
 
   return (
@@ -67,15 +67,17 @@ export const Landing = () => {
         
         <div className="container relative z-10 px-4">
           <div className="max-w-4xl mx-auto text-center space-y-8">
-            <div className="flex justify-center mb-6">
-              <img src={logoIcon} alt="Justice" className="h-16 w-16 animate-float" />
+            <div className="flex justify-center mb-8">
+              <img src="/stop.png" alt="QuickSolve" className="h-24 w-24 animate-float" />
             </div>
-            <h1 className="text-4xl lg:text-6xl font-bold leading-tight">
-              Justice Made
-              <span className="block text-white font-bold drop-shadow-lg">Digital & Transparent</span>
+            <h1 className="text-5xl lg:text-7xl font-black leading-tight tracking-tight">
+              QuickSolve
             </h1>
+            <h2 className="text-2xl lg:text-4xl font-semibold text-white/95 drop-shadow-lg tracking-wide">
+              Where Trust meets Action
+            </h2>
             <p className="text-xl lg:text-2xl text-white/90 max-w-2xl mx-auto">
-              Revolutionary blockchain-powered justice system connecting citizens, police, lawyers, and courts in one unified platform.
+              One Stop Platform for all Governance Services
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Button size="lg" className="btn-hero text-lg px-8 py-4 text-white font-bold" asChild>
@@ -99,10 +101,10 @@ export const Landing = () => {
         <div className="container px-4">
           <div className="text-center mb-16">
             <h2 className="text-3xl lg:text-4xl font-bold mb-4">
-              Complete Justice Ecosystem
+              Complete Governance Ecosystem
             </h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              From complaint filing to verdict delivery, experience justice that's transparent, efficient, and accessible to all.
+              From complaint filing to resolution delivery, experience solutions that are transparent, efficient, and accessible to all.
             </p>
           </div>
           
@@ -126,17 +128,116 @@ export const Landing = () => {
         </div>
       </section>
 
+      {/* Taglines Section */}
+      <section className="py-20 bg-gradient-to-br from-primary/5 to-secondary/5 dark:from-primary/10 dark:to-secondary/10">
+        <div className="container px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl lg:text-4xl font-bold mb-4">
+              Why Choose QuickSolve?
+            </h2>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              Experience the future of governance with our innovative platform
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+            {/* Streamlined & Impactful */}
+            <div className="space-y-4">
+              <h3 className="text-lg font-semibold text-primary mb-4 flex items-center">
+                <div className="w-2 h-2 bg-primary rounded-full mr-3"></div>
+                Streamlined & Impactful
+              </h3>
+              <div className="space-y-3">
+                <div className="p-4 bg-white/50 dark:bg-white/10 rounded-lg border border-primary/20 dark:border-primary/30 backdrop-blur-sm hover:bg-white/70 dark:hover:bg-white/20 transition-all duration-300">
+                  <p className="font-medium text-foreground">Justice Made Easy: Connect with Courts, Cops & Counsel</p>
+                </div>
+                <div className="p-4 bg-white/50 dark:bg-white/10 rounded-lg border border-primary/20 dark:border-primary/30 backdrop-blur-sm hover:bg-white/70 dark:hover:bg-white/20 transition-all duration-300">
+                  <p className="font-medium text-foreground">Effortless Legal Access—Judiciary, Law Enforcement & Lawyers</p>
+                </div>
+                <div className="p-4 bg-white/50 dark:bg-white/10 rounded-lg border border-primary/20 dark:border-primary/30 backdrop-blur-sm hover:bg-white/70 dark:hover:bg-white/20 transition-all duration-300">
+                  <p className="font-medium text-foreground">One Link to Law: Hassle-Free Legal Connections</p>
+                </div>
+                <div className="p-4 bg-white/50 dark:bg-white/10 rounded-lg border border-primary/20 dark:border-primary/30 backdrop-blur-sm hover:bg-white/70 dark:hover:bg-white/20 transition-all duration-300">
+                  <p className="font-medium text-foreground">Your Gateway to Justice—Fast, Simple, Reliable</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Bold & Catchy */}
+            <div className="space-y-4">
+              <h3 className="text-lg font-semibold text-secondary mb-4 flex items-center">
+                <div className="w-2 h-2 bg-secondary rounded-full mr-3"></div>
+                Bold & Catchy
+              </h3>
+              <div className="space-y-3">
+                <div className="p-4 bg-white/50 dark:bg-white/10 rounded-lg border border-secondary/20 dark:border-secondary/30 backdrop-blur-sm hover:bg-white/70 dark:hover:bg-white/20 transition-all duration-300">
+                  <p className="font-medium text-foreground">Click. Connect. Comply.</p>
+                </div>
+                <div className="p-4 bg-white/50 dark:bg-white/10 rounded-lg border border-secondary/20 dark:border-secondary/30 backdrop-blur-sm hover:bg-white/70 dark:hover:bg-white/20 transition-all duration-300">
+                  <p className="font-medium text-foreground">Justice Without the Jargon</p>
+                </div>
+                <div className="p-4 bg-white/50 dark:bg-white/10 rounded-lg border border-secondary/20 dark:border-secondary/30 backdrop-blur-sm hover:bg-white/70 dark:hover:bg-white/20 transition-all duration-300">
+                  <p className="font-medium text-foreground">Law Made Simple—From Courtroom to Counsel</p>
+                </div>
+                <div className="p-4 bg-white/50 dark:bg-white/10 rounded-lg border border-secondary/20 dark:border-secondary/30 backdrop-blur-sm hover:bg-white/70 dark:hover:bg-white/20 transition-all duration-300">
+                  <p className="font-medium text-foreground">No Barriers. Just Justice.</p>
+                </div>
+                <div className="p-4 bg-white/50 dark:bg-white/10 rounded-lg border border-secondary/20 dark:border-secondary/30 backdrop-blur-sm hover:bg-white/70 dark:hover:bg-white/20 transition-all duration-300">
+                  <p className="font-medium text-foreground">Swift Justice Starts Here</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Additional Benefits */}
+            <div className="space-y-4">
+              <h3 className="text-lg font-semibold text-warning mb-4 flex items-center">
+                <div className="w-2 h-2 bg-warning rounded-full mr-3"></div>
+                Platform Benefits
+              </h3>
+              <div className="space-y-3">
+                <div className="p-4 bg-white/50 dark:bg-white/10 rounded-lg border border-warning/20 dark:border-warning/30 backdrop-blur-sm hover:bg-white/70 dark:hover:bg-white/20 transition-all duration-300">
+                  <p className="font-medium text-foreground">24/7 Digital Access</p>
+                </div>
+                <div className="p-4 bg-white/50 dark:bg-white/10 rounded-lg border border-warning/20 dark:border-warning/30 backdrop-blur-sm hover:bg-white/70 dark:hover:bg-white/20 transition-all duration-300">
+                  <p className="font-medium text-foreground">Blockchain Security</p>
+                </div>
+                <div className="p-4 bg-white/50 dark:bg-white/10 rounded-lg border border-warning/20 dark:border-warning/30 backdrop-blur-sm hover:bg-white/70 dark:hover:bg-white/20 transition-all duration-300">
+                  <p className="font-medium text-foreground">AI-Powered Efficiency</p>
+                </div>
+                <div className="p-4 bg-white/50 dark:bg-white/10 rounded-lg border border-warning/20 dark:border-warning/30 backdrop-blur-sm hover:bg-white/70 dark:hover:bg-white/20 transition-all duration-300">
+                  <p className="font-medium text-foreground">Real-Time Updates</p>
+                </div>
+                <div className="p-4 bg-white/50 dark:bg-white/10 rounded-lg border border-warning/20 dark:border-warning/30 backdrop-blur-sm hover:bg-white/70 dark:hover:bg-white/20 transition-all duration-300">
+                  <p className="font-medium text-foreground">Transparent Process</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Benefits Section */}
       <section className="py-20 bg-primary/3 dark:bg-primary/5">
         <div className="container px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <h2 className="text-3xl lg:text-4xl font-bold mb-6">
-                Why Choose Digital Justice?
+                Our Mission & Vision
               </h2>
-              <p className="text-lg text-muted-foreground mb-8">
-                Our platform revolutionizes traditional legal processes with cutting-edge technology, ensuring justice is swift, transparent, and accessible to every citizen.
-              </p>
+              <div className="space-y-6 mb-8">
+                <div>
+                  <h3 className="text-xl font-semibold mb-2 text-primary">Our Mission</h3>
+                  <p className="text-lg text-muted-foreground">
+                    To provide every citizen with quick, fair, and transparent solutions to their problems.
+                  </p>
+                </div>
+                <div>
+                  <h3 className="text-xl font-semibold mb-2 text-primary">Our Vision</h3>
+                  <p className="text-lg text-muted-foreground">
+                    To ensure accountable, tamper-proof, and accessible solutions for all, everywhere.
+                  </p>
+                </div>
+              </div>
               <div className="space-y-4">
                 {benefits.map((benefit, index) => (
                   <div key={index} className="flex items-center gap-3">
@@ -176,7 +277,7 @@ export const Landing = () => {
               Access For Every Role
             </h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Tailored interfaces and features for each stakeholder in the justice system.
+              Tailored interfaces and features for each stakeholder in the governance system.
             </p>
           </div>
           
@@ -190,7 +291,7 @@ export const Landing = () => {
                 <Badge className="w-fit mx-auto mb-6 bg-orange-100 dark:bg-orange-900/30 text-orange-800 dark:text-orange-200 font-semibold px-4 py-2 rounded-full border border-orange-200 dark:border-orange-700 group-hover:bg-orange-200 dark:group-hover:bg-orange-800/50 group-hover:scale-105 transition-all duration-300">Citizens</Badge>
                 <CardTitle className="text-xl font-bold text-foreground">For Citizens</CardTitle>
                 <CardDescription className="text-sm leading-relaxed mt-3 text-muted-foreground">
-                  File complaints, track cases, find lawyers, and stay updated on proceedings.
+                  File complaints, track cases, find professionals, and stay updated on proceedings.
                 </CardDescription>
               </CardHeader>
               <CardContent className="pt-4 pb-6 px-6 mt-auto">
@@ -209,7 +310,7 @@ export const Landing = () => {
                 <Badge className="w-fit mx-auto mb-6 bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-200 font-semibold px-4 py-2 rounded-full border border-blue-200 dark:border-blue-700 group-hover:bg-blue-200 dark:group-hover:bg-blue-800/50 group-hover:scale-105 transition-all duration-300">Law Enforcement</Badge>
                 <CardTitle className="text-xl font-bold text-foreground">For Police</CardTitle>
                 <CardDescription className="text-sm leading-relaxed mt-3 text-muted-foreground">
-                  Manage investigations, file FIRs, submit evidence, and coordinate with courts.
+                  Manage investigations, file reports, submit evidence, and coordinate with authorities.
                 </CardDescription>
               </CardHeader>
               <CardContent className="pt-4 pb-6 px-6 mt-auto">
@@ -228,7 +329,7 @@ export const Landing = () => {
                 <Badge className="w-fit mx-auto mb-6 bg-purple-100 dark:bg-purple-900/30 text-purple-800 dark:text-purple-200 font-semibold px-4 py-2 rounded-full border border-purple-200 dark:border-purple-700 group-hover:bg-purple-200 dark:group-hover:bg-purple-800/50 group-hover:scale-105 transition-all duration-300">Judiciary</Badge>
                 <CardTitle className="text-xl font-bold text-foreground">For Judges</CardTitle>
                 <CardDescription className="text-sm leading-relaxed mt-3 text-muted-foreground">
-                  Process FIRs, create cases, schedule hearings, and deliver verdicts.
+                  Process reports, create cases, schedule hearings, and deliver decisions.
                 </CardDescription>
               </CardHeader>
               <CardContent className="pt-4 pb-6 px-6 mt-auto">
@@ -247,7 +348,7 @@ export const Landing = () => {
                 <Badge className="w-fit mx-auto mb-6 bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-200 font-semibold px-4 py-2 rounded-full border border-green-200 dark:border-green-700 group-hover:bg-green-200 dark:group-hover:bg-green-800/50 group-hover:scale-105 transition-all duration-300">Legal Profession</Badge>
                 <CardTitle className="text-xl font-bold text-foreground">For Lawyers</CardTitle>
                 <CardDescription className="text-sm leading-relaxed mt-3 text-muted-foreground">
-                  Represent clients, submit documents, access case files, and communicate with all parties.
+                  Represent clients, submit documents, access case files, and communicate with all stakeholders.
                 </CardDescription>
               </CardHeader>
               <CardContent className="pt-4 pb-6 px-6 mt-auto">
@@ -270,10 +371,10 @@ export const Landing = () => {
         
         <div className="container px-4 text-center relative z-10">
           <h2 className="text-3xl lg:text-4xl font-bold mb-6">
-            Ready to Experience Digital Justice?
+            Ready to Experience Digital Solutions?
           </h2>
           <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-            Join thousands of citizens, legal professionals, and law enforcement officers using our platform for transparent and efficient justice.
+            Join thousands of citizens, professionals, and law enforcement officers using our platform for transparent and efficient solutions.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="lg" className="btn-hero text-lg px-8 py-4 text-white font-bold" asChild>
